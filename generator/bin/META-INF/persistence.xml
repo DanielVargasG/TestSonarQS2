@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="generator">
+		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+		<class>edn.cloud.sfactor.persistence.entities.Document</class>
+		<class>edn.cloud.sfactor.persistence.entities.DocumentSignature</class>
+		<class>edn.cloud.sfactor.persistence.entities.Employee</class>
+		<class>edn.cloud.sfactor.persistence.entities.ErrorLog</class>
+		<class>edn.cloud.sfactor.persistence.entities.Favorite</class>
+		<class>edn.cloud.sfactor.persistence.entities.Generated</class>
+		<class>edn.cloud.sfactor.persistence.entities.SfRecord</class>
+		<class>edn.cloud.sfactor.persistence.entities.SfProperty</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.SfEntity</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.SfNavProperty</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.TemplateSignature</class>		
+ 		<class>edn.cloud.sfactor.persistence.entities.SignatureFileControl</class>
+		<class>edn.cloud.sfactor.persistence.entities.LoggerAction</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.EventListenerParam</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.EventListenerCtrlHistory</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.StructureBusiness</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.EventListenerDocHistory</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.AdminParameters</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.TemplateGroupSignature</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.Template</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FieldsTemplate</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.RolesMappingPpd</class> 		
+ 		<class>edn.cloud.sfactor.persistence.entities.EventListenerCtrlProcess</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.EventListenerDocProcess</class> 	
+ 		<class>edn.cloud.sfactor.persistence.entities.TemplateFilters</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FieldsTemplateLibrary</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.DocumentFields</class> 
+ 		<class>edn.cloud.sfactor.persistence.entities.SignatureFileControlDetail</class> 				
+ 		<class>edn.cloud.business.dto.integration.SFAdmin</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.Folder</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FolderUser</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FolderTemplate</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FolderGroup</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FieldsMappingPpd</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.SignsTemplateLibrary</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.Countries</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.JobsLog</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.LookupTable</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.Language</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.FieldsMappingMeta</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.ManagerRole</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.ManagerRoleGroup</class>
+		<class>edn.cloud.sfactor.persistence.entities.MassiveLoadUser</class>
+		<class>edn.cloud.sfactor.persistence.entities.RoleMappingGroupPpd</class>
+		<class>edn.cloud.sfactor.persistence.entities.AuthorizationDetails</class>
+ 		<class>edn.cloud.sfactor.persistence.entities.AuthorizationDocument</class>
+ 		
+		<properties>
+			<property name="eclipselink.deploy-on-startup" value="True" />
+			<property name="eclipselink.ddl-generation" value="create-or-extend-tables" />
+			<property name="eclipselink.logging.parameters" value="true"/>
+			<property name="eclipselink.logging.level" value="SEVERE" />
+			<property name="eclipselink.jpql.parser" value="org.eclipse.persistence.queries.ANTLRQueryBuilder" />
+			<property name="eclipselink.jdbc.cache-statements" value="false"/>
+<!-- 			<property name="eclipselink.cache.shared.default" value="false"/> -->
+		</properties>
+	</persistence-unit>
+</persistence>
