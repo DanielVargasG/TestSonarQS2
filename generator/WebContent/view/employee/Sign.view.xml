@@ -1,0 +1,170 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:u="sap.ui.unified" controllerName="generator.controller.employee.Sign" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="HomeMasterPage" title="{b_i18n>EMPLOYEES_MASTER_PAGE_NAME}" scrollToLoad="false" showNavButton="true" navButtonTap="onNavPressed">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{i18n>home_Signature}" responsive="true" intro="{/personalInfoNav/results/0/firstName} {/personalInfoNav/results/0/lastName} ({/personIdExternal})" backgroundDesign="Translucent" icon="sap-icon://basket">
+				<headerContainer>
+					<IconTabBar  id="idIconTabBarSign" expandable="false" expanded="true"  responsive="true" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" select="handleIconTabBarSelect">
+						<items>
+						
+							<IconTabFilter key="MyAuthoRequest" id="MyAuthoRequest" icon="sap-icon://approvals" visible="{iConfig>/hasTemplates}"  iconColor="Positive" text="{i18n>managerAuth_Autho_request}">								
+								<Table id="idTableAutho" width="100%" inset="false" items="{path: 'modelAutho>/', sorter: { path: 'status', group: true, descending:true } }" visible="true">
+									<headerToolbar>										
+										<Toolbar>	
+											<Title text="{i18n>managerAuth_Autho_request}" level="H2" textAlign="Right"/>
+											<ToolbarSpacer/>										
+											<Button icon="sap-icon://synchronize" tooltip="{i18n>global_Info}" press="onPressReloadAutho"/>
+										</Toolbar>
+									</headerToolbar>
+									<columns>		
+										<Column width="10%">
+											<Text text="{i18n>global_Id}" />
+										</Column>										
+										<Column width="22%">
+											<Text text="{i18n>document_Date_create}" />
+										</Column>
+										<Column width="22%">
+											<Text text="{i18n>template}" />
+										</Column>
+										<Column width="10%">
+											<Text text="{i18n>signature_Step}" />
+										</Column>
+										<Column width="10%">
+											<Text text="{i18n>document_Document_generated}" />
+										</Column>
+										<Column width="10%">
+											<Text text="{i18n>global_Variables}" />
+										</Column>
+										<Column width="10%">											
+										</Column>													
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ObjectIdentifier title="{modelAutho>id}" />
+												<ObjectIdentifier title="{i18n>event_Last_update}: {modelAutho>lastUpdateOnString}" text="{i18n>event_CreateDate}: {modelAutho>createOnString}" />
+												<ObjectIdentifier title="Id: {modelAutho>template/id}" text="{modelAutho>template/title}, {i18n>template_Last_version}: {modelAutho>template/latesVersion}, {i18n>template_Send_Authorized_Document}: {modelAutho>template/sendDocAutho}" />
+												<ObjectIdentifier title="{modelAutho>currentStep}"/>												
+												<Button icon="sap-icon://sys-next-page" press="onDocumentPressed" visible="{= ${modelAutho>status}.includes('Generated')}"/>
+												<Button icon="sap-icon://task" press="onPressAuthoVariablesDoc" class="sapUiSmallMarginEnd" visible="{= ${modelAutho>status}.includes('Pending')}"/>												
+												<Button icon="sap-icon://decline" press="onPressDeleteAutho" visible="{= ${modelAutho>status}.includes('Pending')}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							
+							<IconTabFilter key="MySign" icon="sap-icon://signature" iconColor="Positive" text="{i18n>signature_my_Signature}">
+								<!-- <Button icon="sap-icon://action" text="Add a new document" press="onPress" ariaLabelledBy="actionButtonLabel" /> -->
+								<Toolbar>	
+									<Title text="{i18n>signature_my_Signature}s" level="H2" textAlign="Right"/>									
+								</Toolbar>
+								<Table id="idSignaturesTable" inset="false" items="{ path: '/signatures/signatureCtrlInfoList', sorter: { path: 'id' } }">
+
+									<columns>
+										<Column width="20em">
+											<Text text="{i18n>signature_Signature_for}" />
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text text="{i18n>signature_Document_type_id}" />
+										</Column>
+										<Column>
+											<Text text="{i18n>signature_Create_date}" />
+										</Column>
+										<Column>
+											<Text text="{i18n>signature_Status}" />
+										</Column>
+										<Column>
+											<Text text="{i18n>signature_Step}" />
+										</Column>
+										<Column>
+
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<ObjectIdentifier title="{i18n>signature_Doc_title} : {title}" text="idCtrl: {idSignatureCtrl}" />
+												<Text text="{document_type}" />
+												<Text text="{dateSignControl}" />
+												<ObjectIdentifier title="{status}" text="" />
+												<Text text="{phaseCurrent}" />
+												<Link text="{i18n>signature_Sign_now}" href="{signatoryLink}" target="_blank" visible="{showLinkToSign}" />
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+							
+							<IconTabFilter key="ByAutho" id="ByAutho" icon="sap-icon://complete" iconColor="Positive" text="{i18n>managerAuth_Autho_my}" >
+							
+								<Toolbar>	
+									<Title text="{i18n>managerAuth_Autho_my}" level="H2" textAlign="Right"/>									
+								</Toolbar>
+								
+								<Table id="idTableAuth" width="100%" inset="false" items="{path: 'modelMyAuth>/', sorter: { path: 'status', group: true, descending:true } }" >
+									<columns>											
+										<Column width="10%" demandPopin="true">
+											<Text text="{i18n>template_Authorization}" />
+										</Column>
+										<Column width="10%" demandPopin="true">
+											<Text text="{i18n>template}" />
+										</Column>
+										<Column width="10%" demandPopin="true">
+											<Text text="{i18n>pending_Create_Date}" />
+										</Column>
+										<Column width="10%" demandPopin="true">
+											<Text text="{i18n>signature_Step}" />
+										</Column>
+										<Column width="10%" demandPopin="true">
+											<Text text="{i18n>global_User}" />
+										</Column>
+										<Column width="10%" demandPopin="true">
+											<Text text="{i18n>global_Status}" />
+										</Column>
+										<Column width="6%" demandPopin="true">	
+											<Text text="{i18n>global_Variables}" />					
+										</Column>
+										<Column width="6%" demandPopin="true">						
+										</Column>										
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells >													
+												<ObjectIdentifier title="{modelMyAuth>authDocument/id} "/>
+												
+												<ObjectIdentifier title="Id: {modelMyAuth>authDocument/template/id}" text="{modelMyAuth>authDocument/template/title}, {i18n>template_Last_version}: {modelMyAuth>authDocument/template/latesVersion} " />
+												<ObjectIdentifier title="{modelMyAuth>createOnString}" />
+												<ObjectIdentifier title="{modelMyAuth>currentAutho}" />
+												<ObjectIdentifier title="{modelMyAuth>authDocument/userEmp}" />
+												<ObjectIdentifier title="{modelMyAuth>status} "  />
+												<Button icon="sap-icon://task" press="onPressMyAuthoVariablesDoc" class="sapUiSmallMarginEnd"/>
+												<Button icon="sap-icon://edit" press="onPressMyAuthorization" class="sapUiSmallMarginEnd" visible="{= ${modelMyAuth>status}.includes('Pending')}" />												
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>							
+							
+
+
+						</items>
+					</IconTabBar>
+				</headerContainer>
+			</ObjectHeader>
+		</content>
+	</Page>
+</core:View>

@@ -1,0 +1,99 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:tmpl="sap.ui.core.tmpl" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:table="sap.ui.table" controllerName="generator.controller.template.Templates"
+	xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{i18n>home_template} " titleActive="false" backgroundDesign="Solid" icon="sap-icon://doc-attachment">
+			</ObjectHeader>
+			<Toolbar>
+				<SearchField liveChange="onSearchTemplate" width="100%" placeholder="{i18n>template_Search_name}"/>
+				<ToolbarSpacer />
+					
+				</Toolbar>
+			<Table id="idTableTemplate" width="100%" inset="false" items="{path: 'modelFolder>/', sorter: { path: 'id' } }" visible="false">
+				<columns>											
+					<Column width="90%" demandPopin="true"/>
+					<Column width="10%" demandPopin="true"/>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>													
+							<ObjectIdentifier title="{modelFolder>title}. / {i18n>global_Id}: {modelFolder>idTemplate} / {i18n>template_Last_version}: {modelFolder>latest_version} " text="{id}" />
+							<Button icon="sap-icon://edit" press="handleColumnListItemSelect" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEnter}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+			<Tree id="Tree" items="{path: 'modelFolder>/', sorter: { path: 'id' } }" mode="None">
+				<CustomTreeItem>
+					<FlexBox visible="{modelFolder>catSeeEdit}" alignItems="start" width="80%">
+						<items>
+							<ObjectIdentifier title="{modelFolder>title}" text="{id}" />
+						</items>
+					</FlexBox>
+					<FlexBox visible="{= ${modelFolder>catSeeEdit} === true &amp;&amp; ${modelFolder>levelFolder} === 1 }" alignItems="end" width="20%">
+						<items>
+							<Button icon="sap-icon://employee-lookup" press="handleUserPress" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEdit}" />
+							<Button icon="sap-icon://permission" press="handlePermissionPress" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEdit}" />
+							<Button icon="sap-icon://edit" press="handleEditPress" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEdit}" />
+							<Button icon="sap-icon://delete" press="handleDeletePress" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEdit}" />
+						</items>
+					</FlexBox>
+					<FlexBox visible="{= ${modelFolder>catSeeEdit} === true &amp;&amp; ${modelFolder>levelFolder} > 1 }" alignItems="end" width="20%">
+						<items>							
+							<Button icon="sap-icon://edit" press="handleEditPress" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEdit}" />
+							<Button icon="sap-icon://delete" press="handleDeletePress" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEdit}" />
+						</items>
+					</FlexBox>
+					<FlexBox visible="{modelFolder>catSeeEnter}" alignItems="start" width="95%">
+						<items>
+							<ObjectIdentifier title="{modelFolder>title}. / {i18n>global_Id}: {modelFolder>idTemplate} / {i18n>template_Last_version}: {modelFolder>latest_version} " text="{id}" />
+						</items>
+					</FlexBox>
+					<FlexBox visible="{modelFolder>catSeeEnter}" alignItems="end" width="5%">
+						<Button icon="sap-icon://edit" press="handleColumnListItemSelect" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEnter}" />
+					</FlexBox>
+					<FlexBox visible="{modelFolder>catSeeEnter}" alignItems="end" width="5%">
+						<Button icon="sap-icon://delete" press="handleColumnListItemDelete" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEnter}" />
+					</FlexBox>
+					<FlexBox visible="{modelFolder>catSeeNothing}" alignItems="start" width="100%">
+						<items>
+							<ObjectIdentifier title="{modelFolder>title}" text="{id}" />
+						</items>
+					</FlexBox>
+				</CustomTreeItem>
+			</Tree>
+
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />
+
+				<MenuButton icon="sap-icon://add" text="{i18n>global_Create}" defaultAction="onDefaultAction" useDefaultActionOnly="true">
+					<menu>
+						<Menu itemSelected="onMenuAction">
+							<items>
+								<MenuItem text="{i18n>template_Create_template}" icon="sap-icon://doc-attachment" press="onSubmitDialog" />
+								<MenuItem text="{i18n>template_Create_folder}" icon="sap-icon://open-folder" press="onFolderDialog" />
+							</items>
+						</Menu>
+					</menu>
+				</MenuButton>
+
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</core:View>

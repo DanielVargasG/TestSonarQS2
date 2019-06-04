@@ -1,0 +1,71 @@
+<!DOCTYPE xml>
+<core:FragmentDefinition xmlns="sap.m" binding="{path:'tplModel'}" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showHeader="false" contentWidth="600px" contentHeight="500px" placement="VerticalPreferredBottom">
+		<NavContainer id="navCon">
+			<Page id="intro" title="{i18n>team_Actions}">
+				<l:Grid visible="{= ${iConfig>/hasTemplates} === true ? true : false }" defaultSpan="L3 M4 S6" class="sapUiSmallMarginTop">
+					<l:content>
+						<ObjectListItem id="productitem-large-0" title="{i18n>team_Generate_document}" intro="{i18n>home_template}" icon="sap-icon://generate-shortcut" type="Active" press="onTplClick">
+							<layoutData>
+								<l:GridData span="L6 M12 S12" />
+							</layoutData>
+						</ObjectListItem>
+						<ObjectListItem id="productitem-large-1" title="{i18n>team_Send_file_user_profile}" intro="{i18n>global_User}" icon="sap-icon://add" type="Active" press="onAddFile">
+							<layoutData>
+								<l:GridData span="L6 M12 S12" />
+							</layoutData>
+						</ObjectListItem>
+						<ObjectListItem id="productitem-large-2" title="{i18n>team_View_document}" intro="{i18n>global_User}" icon="sap-icon://documents" type="Active" press="onViewDocuments">
+							<layoutData>
+								<l:GridData span="L6 M12 S12" />
+							</layoutData>
+						</ObjectListItem>
+					</l:content>
+
+				</l:Grid>
+				<l:Grid visible="{= ${iConfig>/hasTemplates} === false ? true : false }" defaultSpan="L3 M4 S6" class="sapUiSmallMarginTop">
+					<l:content>
+						<ObjectListItem id="productitem-large-3" title="{i18n>team_Send_file_user_profile}" intro="{i18n>global_User}" icon="sap-icon://add" type="Active" press="onAddFile">
+							<layoutData>
+								<l:GridData span="L6 M12 S12" />
+							</layoutData>
+						</ObjectListItem>
+						<ObjectListItem id="productitem-large-4" title="{i18n>team_View_document}" intro="{i18n>global_User}" icon="sap-icon://documents" type="Active" press="onViewDocuments">
+							<layoutData>
+								<l:GridData span="L6 M12 S12" />
+							</layoutData>
+						</ObjectListItem>
+					</l:content>
+				</l:Grid>
+			</Page>
+			<Page id="master" showNavButton="true" visible="{iConfig>/hasTemplates}" navButtonPress="onNavBack2" title="{i18n>team_Templates}">
+				<SearchField liveChange="onSearchTemplate" width="100%" placeholder="{i18n>template_Search_name}" />
+				<List id="idList" items="{tplModel>/}">
+					<StandardListItem title="{tplModel>title}" description="{tplModel>description}" type="Active" press="onNavToProduct" iconDensityAware="false" iconInset="false" />
+				</List>
+			</Page>
+			<Page id="detail" showNavButton="true" navButtonPress="onNavBack" title="Template">
+				<ObjectHeader title="{tplModel>title} v{tplModel>latest_version}">
+				</ObjectHeader>
+
+				<content>
+					<ObjectAttribute text="{tplModel>description}" class="sapUiSmallMargin" />
+					<ObjectAttribute text="{i18n>team_Generated_document_format}: {tplModel>formatGenerated}" class="sapUiSmallMargin" />
+					<ObjectAttribute text="{i18n>team_Language}: {tplModel>locale} " class="sapUiSmallMargin" />
+					<Label text="{i18n>team_Date}: " width="20%" class="sapUiSmallMargin" />
+					<DatePicker id="effectiveDate" valueFormat="yyyy-MM-dd" width="50%" change="changeDate" />
+				</content>
+
+				<footer>
+					<Toolbar>
+						<Text text="{i18n>team_Template_have_version_greater}" visible="{= ${tplModel>latest_version} === 0}" />
+						<ToolbarSpacer />
+						<Button text="{i18n>team_Generate_document}" style="margin-left:10%" width="80%" id="__button4" icon="sap-icon://accept" press="onValidatedPressed" enabled="{= ${tplModel>latest_version} > 0}" />
+					</Toolbar>
+				</footer>
+			</Page>
+			<Page id="addFile" title="{i18n>global_Upload}">
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,68 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:tmpl="sap.ui.core.tmpl" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:table="sap.ui.table" 
+controllerName="generator.controller.document.DocumentArchive"
+	xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{i18n>home_Archive_documents} " titleActive="false" backgroundDesign="Solid" icon="sap-icon://pushpin-on">
+			</ObjectHeader>
+						
+			<Toolbar >
+				<Label text="{i18n>archive_Start_date}"  width="10%"/>
+				<DatePicker id="startDate" valueFormat="yyyy-MM-dd" width="20%"/>
+				<Label text="{i18n>archive_finish_date}" width="10%"/>
+				<DatePicker id="finishDate" valueFormat="yyyy-MM-dd" width="20%"/>
+				<Label text="{i18n>pending_Target_user}"  width="10%"/>
+				<Input id="idUser" required="true" width="20%"/>
+				<Button text="{i18n>archive_Search}" press="onPressDate"/>
+				
+			</Toolbar>
+				
+			<Table id="idTableDoc" width="100%" inset="false" items="{path: 'modelFolder>/', sorter: { path: 'id' } }" visible="false">
+				<columns>											
+					<Column width="20%" demandPopin="true">
+						<Text text="{i18n>pending_Documents}" />
+					</Column>
+					<Column width="20%" demandPopin="true">
+						<Text text="{i18n>pending_Dates}" />
+					</Column>
+					<Column width="20%" demandPopin="true">
+						<Text text="{i18n>pending_User_details}"/>
+					</Column>
+					<Column width="12%" demandPopin="true">
+						<Text text="{i18n>pending_Status}" />
+					</Column>					
+					<Column width="6%" demandPopin="true">						
+					</Column>
+					<Column width="6%" demandPopin="true">						
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem id="idCell">
+						<cells >													
+							<ObjectIdentifier title="{i18n>document_Id_document}: {modelFolder>id} / {modelFolder>templateId/title}  " text="{i18n>document_Export_format_document}: {modelFolder>outputFormat}" />
+							<ObjectIdentifier title="{i18n>event_Effective_date_instaneous} : {modelFolder>effectiveDate}" text="{i18n>event_CreateDate} : {modelFolder>createOnString}"/>							
+							<ObjectIdentifier title="{i18n>pending_User_details} : {modelFolder>owner/firstName} {modelFolder>owner/lastName}" text="{i18n>pending_Target_user} : {modelFolder>targetUser}"/>
+							<ObjectIdentifier title="{i18n>global_Status} : {modelFolder>status}" text ="{i18n>archive_} : {modelFolder>archive}"/>
+							<Button icon="sap-icon://outbox" press="onPressArchive" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEnter}" />
+							<Button icon="sap-icon://edit" press="onPressDetails" class="sapUiSmallMarginEnd" visible="{modelFolder>catSeeEnter}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		
+	</Page>
+</core:View>

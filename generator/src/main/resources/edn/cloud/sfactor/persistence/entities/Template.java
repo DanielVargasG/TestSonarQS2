@@ -1,0 +1,271 @@
+package edn.cloud.sfactor.persistence.entities;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import edn.cloud.business.api.util.UtilCodesEnum;
+import edn.cloud.business.api.util.UtilMapping;
+
+
+/**
+ * Entity implementation class for Entity: Template
+ *
+ */
+@Entity
+@Table(name = "TEMPLATE", uniqueConstraints = { @UniqueConstraint(columnNames = { "TEMPLATE_ID" }) })
+public class Template implements IDBEntity 
+{	   
+	@Id
+	@GeneratedValue
+	@Column(name="TEMPLATE_ID")
+	private Long id;
+
+	@Basic
+	@Column(name = "TITLE")
+	private String title;
+	
+	@Basic
+	@Column(name = "DESCRIPTION")
+	private String description;
+	
+	@Basic
+	@Column(name = "IDENTIFIER_PPD")
+	private String identifierPpd;
+	
+	@Basic
+	@Column(name = "LATES_VERSION")
+	private Integer latesVersion = 0;
+	
+	@Basic
+	@Column(name = "FORMAT")
+	private String format;
+	
+	@Basic
+	@Column(name = "LOCALE")
+	private String locale;
+	
+	@Basic
+	@Column(name = "MODULE")
+	private String module;
+	
+	@Basic
+	@Column(name = "ESIGN")
+	private String esign;
+	
+	@Basic
+	@Column(name = "TYPE_SIGN")
+	private String typeSign;	
+	
+	@Basic
+	@Column(name = "emailSign")
+	private String emailSign;	
+	
+	@Basic
+	@Column(name = "DOCUMENT_TYPE")
+	private String documentType;
+	
+	@Basic
+	@Column(name = "SELF_GENERATION")
+	private String selfGeneration;
+	
+	@Basic
+	@Column(name = "STATUS")
+	private String status = UtilCodesEnum.CODE_ACTIVE.getCode();
+	
+	@Basic
+	@Column(name = "FORMAT_GENERATED")
+	private String formatGenerated;
+	
+	@Basic
+	@Column(name = "MANAGERCONFIRM")
+	private String managerConfirm = UtilCodesEnum.CODE_MANAGER_TYPE_SIGNATURE.getCode();	
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="EVENT_LIS_PARAM_ID")
+	private EventListenerParam eventListenerParam;
+	
+	@Basic
+	@Column(name = "SEND_DOC_AUTHO")
+	private String sendDocAutho;
+	
+	@SuppressWarnings("unused")
+	private static final long serialVersionUID = 1L;
+	
+	public Template(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Template() {
+		super();
+	}	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getIdentifierPpd() {
+		return identifierPpd;
+	}
+
+	public void setIdentifierPpd(String identifierPpd) {
+		this.identifierPpd = identifierPpd;
+	}
+
+	public Integer getLatesVersion() {
+		return this.latesVersion;
+	}
+
+	public void setLatesVersion(Integer latesVersion) {
+		this.latesVersion = latesVersion;
+	}   
+	public String getFormat() {
+		return this.format;
+	}
+
+	public void setFormat(String format) {
+		this.format = format;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getModule() {
+		return module;
+	}
+
+	public void setModule(String module) {
+		this.module = module;
+	}
+
+	public String getEsign() {
+		return esign;
+	}
+
+	public void setEsign(String esign) {
+		this.esign = esign;
+	}
+
+	public EventListenerParam getEventListenerParam() {
+		return eventListenerParam;
+	}
+
+	public void setEventListenerParam(EventListenerParam eventListenerParam) {
+		this.eventListenerParam = eventListenerParam;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
+	}
+
+	public String getDocumentType() {
+		return documentType;
+	}
+
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
+
+	public String getEmailSign() {
+		return emailSign;
+	}
+
+	public void setEmailSign(String emailSign) {
+		this.emailSign = emailSign;
+	}
+
+	public String getSelfGeneration() {
+		return selfGeneration;
+	}
+
+	public void setSelfGeneration(String selfGeneration) {
+		this.selfGeneration = selfGeneration;
+	}
+
+	public String getFormatGenerated() {
+		return formatGenerated;
+	}
+
+	public void setFormatGenerated(String formatGenerated) {
+		this.formatGenerated = formatGenerated;
+	}
+
+	public String getManagerConfirm() {
+		if(managerConfirm!=null)
+			return managerConfirm;
+		else
+			return UtilCodesEnum.CODE_MANAGER_TYPE_SIGNATURE.getCode();
+	}
+
+	public void setManagerConfirm(String managerConfirm) {
+		this.managerConfirm = managerConfirm;
+	}
+	
+	public String getStatusLabel() {
+		if(status!=null && !status.equals(""))
+			return UtilMapping.getLabelEnumByCode(status);
+			
+		return status;
+	}
+
+	public String getSendDocAutho() 
+	{
+		if(sendDocAutho!=null)
+			return sendDocAutho;
+		else
+			return UtilCodesEnum.CODE_TYPE_DOWNLOAD.getCode();
+	}
+
+	public void setSendDocAutho(String sendDocAutho) {
+		this.sendDocAutho = sendDocAutho;
+	}
+
+	public String getTypeSign() 
+	{
+		if(typeSign!=null)		
+			return typeSign;
+		
+		return UtilCodesEnum.CODE_TYPE_SIGNATURE_DOCUSIGN.getCode();
+	}
+
+	public void setTypeSign(String typeSign) {
+		this.typeSign = typeSign;
+	}
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.EventListenerCtrlHistoAttach" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>event_Listener_attachments_history} " level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>					
+					<Column width="20%">
+						<Text text="{i18n>global_Status}" />
+					</Column>
+					<Column width="35%">
+						<Text text="{i18n>event_Info_file}" />
+					</Column>
+					<Column width="25%">
+						<Text text="{i18n>event_Dates}" />
+					</Column>						
+					<Column width="10%">
+						<Text text="{i18n>event_Observation}" />
+					</Column>								
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<ObjectIdentifier title="{i18n>global_Status}: {statusLabel}" text="{i18n>global_Id}: {id}" />
+							<ObjectIdentifier title="{i18n>event_Name_file}: {attachmentFileName}" />							
+							<ObjectIdentifier text="{i18n>event_CreateDate}: {createOnString}"/>							
+							<OverflowToolbarButton text="{i18n>event_Observation}" press="onObservationPress" icon="sap-icon://notes" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+
+</core:View>

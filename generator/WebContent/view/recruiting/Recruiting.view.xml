@@ -1,0 +1,54 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" controllerName="generator.controller.recruiting.Recruiting" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="HomeMasterPage" title="{b_i18n>EMPLOYEES_MASTER_PAGE_NAME}" scrollToLoad="false" showNavButton="true" navButtonTap="onNavPressed">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{i18n>recluting_Title}" responsive="true" backgroundDesign="Translucent" icon="sap-icon://employee-pane">
+				<headerContainer>
+				</headerContainer>
+			</ObjectHeader>
+			<Table id="idProductsTable" inset="false" items="{ path: 'SearchModel>/d/results/', sorter: { path: 'id', descending: true } }">
+				<headerToolbar>
+					<Toolbar>
+						<SearchField liveChange="onSearch" width="100%" />
+						<Button
+							icon="sap-icon://add-filter"
+							tooltip="{i18n>logger_Show_filters}"
+							press="handleShowFilter"/>	
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>recluting_User}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>recluting_Job_application}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>recluting_Action}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active">
+						<cells>
+							<ObjectIdentifier title="{SearchModel>firstName} {SearchModel>lastName}" text="{SearchModel>applicationId}" />
+							<Text text="{SearchModel>jobRequisition/jobReqLocale/results/0/jobTitle}" />
+							<OverflowToolbarButton text="Observation" press="handleRecListItemSelect" icon="sap-icon://notes" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

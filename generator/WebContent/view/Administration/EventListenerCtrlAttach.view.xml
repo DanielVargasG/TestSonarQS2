@@ -1,0 +1,69 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.EventListenerCtrlAttach" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>event_Attach}" level="H2" />
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://synchronize"
+							tooltip="{i18n>global_Reload}"
+							press="showInfo"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>															
+					<Column width="15%">
+						<Text text="{i18n>global_Status}" />
+					</Column>
+					<Column width="8%">
+						<Text text="{i18n>event_Retries}" />
+					</Column>					
+					<Column width="45%">
+						<Text text="{i18n>event_Info_file}" />
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>event_Dates}" />
+					</Column>
+					<Column width="12%">
+						<Text text="{i18n>event_Observation}" />
+					</Column>						
+					<Column width="10%">
+						<Text text="{i18n>global_Edit}" />
+					</Column>							
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>	
+							<ObjectIdentifier title="{statusLabel}" text="{i18n>global_Id}: {id} "/>							
+							<Label class="mt" text="{retriesInfo}" />
+							<ObjectIdentifier title="{i18n>event_Name_file}: {attachmentFileName}, {i18n>event_Last_version}: {template/latesVersion}" text="{i18n>global_Id}: {attachmentIdSF} / {i18n>event_Type_module}: {fieldMapPpd/typeModule} / {i18n>team_Document_type}: {fieldMapPpdDest/parameters}" />
+							<ObjectIdentifier title="{i18n>event_Last_update}: {lastUpdateOnString}" text="{i18n>event_CreateDate}: {createOnString}"/>
+							<OverflowToolbarButton text="{i18n>event_Observation}" press="onObservationPress" icon="sap-icon://notes" />
+							<OverflowToolbarButton text="{i18n>event_Change_status}" press="onChangeStatus" icon="sap-icon://edit" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+
+</core:View>

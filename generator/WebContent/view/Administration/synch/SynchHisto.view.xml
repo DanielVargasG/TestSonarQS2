@@ -1,0 +1,74 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.synch.SynchHisto" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'id', descending: true } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>attachistory_Synchronizations}" level="H2" />
+						<ToolbarSpacer/>
+						
+						<Button
+							icon="sap-icon://generate-shortcut"
+							tooltip="{i18n>event_process_again}"
+							press="onPressProcessAgain"/>
+							
+						<Button
+							icon="sap-icon://delete"
+							tooltip="{i18n>attachistory_Delete_all}"
+							press="onDeleteAll"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>	
+					<Column width="10%">					
+					</Column>				
+					<Column width="20%">
+						<Text text="{i18n>attachistory_Status}" />
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>global_User}" />
+					</Column>
+					<Column width="25%">
+						<Text text="{i18n>global_Name}" />
+					</Column>					
+					<Column width="15%">
+						<Text text="{i18n>attachistory_Create_date}" />
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>global_Observations}" />
+					</Column>								
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<CheckBox id="txt" title="{id}" valueState="Active" enabled="{check}" visible="{check}" select="onPressCheckHisto"/>
+							<ObjectIdentifier title="{i18n>attachistory_Id_ctrl_histo}: {id}" text="{statusLabel}" />
+							<ObjectIdentifier title="{userIdPpd}" text="{i18n>global_country}: {userCountryString}" />
+							<ObjectIdentifier title="{i18n>global_Id}: {attachmentIdSF}" text="{attachmentFileName}" />
+							<ObjectIdentifier title="{createOnString}" text="" />
+							<OverflowToolbarButton text="Observation" press="onObservationPress" icon="sap-icon://notes" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+
+</core:View>

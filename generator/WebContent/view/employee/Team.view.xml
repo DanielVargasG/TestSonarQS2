@@ -1,0 +1,63 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.controller.employee.Team" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader responsive="true" title="{i18n>team_Generate_documents_team}" titleActive="false" backgroundDesign="Translucent" icon="sap-icon://company-view">
+				<attributes>
+					<ObjectAttribute id="actID" text="{i18n>team_Include_inactive_users}" active="true" press="handleLinkObjectAttributePress" />
+				</attributes>
+				<headerContainer>
+					<IconTabBar expandable="false" expanded="true" select="onVersionPressed" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" id="idTab">
+						<items>
+							<IconTabFilter  id="all" visible="{iConfig>/seesAllPop}" text="{i18n>global_Search}" icon="sap-icon://search">
+								<Toolbar visible="{iConfig>/seesAllPop}" >
+									<SearchField liveChange="onSearch" width="100%" />
+								</Toolbar>
+								<List id="list3" class="uoMImgGrid" showSeparators="None" growing="true" growingThreshold="20" growingScrollToLoad="true" items="{teamSearchModel>/}">
+									<CustomListItem type="Active" press="handleTeamSearchListItemSelect">
+										<VBox alignItems="Center">
+											<Image mode="Background" backgroundSize="auto" backgroundPosition="center" src="/generator/rst/json/user/image/{teamSearchModel>userId}" description="Logo" />
+											<!-- <f:Avatar src="/generator/rst/json/user/image/{teamSearchModel>userId}" displaySize="Custom" customDisplaySize="180px" /> -->
+										</VBox>
+										<VBox class="" width="100%" alignItems="Stretch">
+											<Text class="productNumber" width="100%" text="{teamSearchModel>firstName} {teamSearchModel>lastName}" textAlign="Center" wrapping="false" />
+											<Text class="productShortDescription" width="100%" text="{teamSearchModel>title}" textAlign="Center" wrapping="false" />
+										</VBox>
+									</CustomListItem>
+								</List>
+							</IconTabFilter>
+							
+							<IconTabFilter text="{i18n>team_Hr_view}" icon="sap-icon://activity-individual" iconColor="Positive" visible="false">
+								<List id="list" class="uoMImgGrid" showSeparators="true" growing="true" growingThreshold="20" growingScrollToLoad="true" items="{teamModel>/}">
+									<CustomListItem type="Active" press="handleTeamListItemSelect">
+										<VBox alignItems="Center">
+											<Image mode="Background" backgroundSize="auto" backgroundPosition="center" src="/generator/rst/json/user/image/{teamModel>userId}" description="Logo" />
+											<!-- <f:Avatar src="/generator/rst/json/user/image/{teamModel>userId}" displaySize="Custom" customDisplaySize="180px" /> -->
+										</VBox>
+										<VBox class="" width="100%" alignItems="Stretch">
+											<Text class="productNumber" width="100%" text="{teamModel>firstName} {teamModel>lastName}" textAlign="Center" wrapping="false" />
+											<Text class="productShortDescription" width="100%" text="{teamModel>title}" textAlign="Center" wrapping="false" />
+										</VBox>
+									</CustomListItem>
+								</List>
+							</IconTabFilter>
+							
+						</items>
+					</IconTabBar>
+				</headerContainer>
+			</ObjectHeader>
+		</content>
+	</Page>
+</core:View>

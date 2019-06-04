@@ -1,0 +1,4 @@
+<!DOCTYPE xml>
+<VBox xmlns="sap.m" >
+	<Image src="{iConfig>/path}images/appdsf.png" height="38px" class="logoApp" />
+</VBox>

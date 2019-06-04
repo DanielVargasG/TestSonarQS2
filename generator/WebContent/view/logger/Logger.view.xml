@@ -1,0 +1,74 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" controllerName="generator.controller.logger.Logger" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="HomeMasterPage" title="{b_i18n>EMPLOYEES_MASTER_PAGE_NAME}" scrollToLoad="false" showNavButton="true" navButtonTap="onNavPressed">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Table id="idProductsTable" inset="false" items="{ path: '/', sorter: { path: 'id', descending: true } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>administration_Logger}" level="H2" />
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://add-filter"
+							tooltip="{i18n>logger_Show_filters}"
+							press="handleShowFilter"/>	
+						<Button
+							icon="sap-icon://badge"
+							tooltip="{i18n>logger_Show_information_version}"
+							press="handleShowInfoVersion"/>
+						<Button
+							icon="sap-icon://synchronize"
+							tooltip="{i18n>global_Reload}"
+							press="handleRefreshData"/>
+						<Button
+							icon="sap-icon://delete"
+							tooltip="{i18n>logger_Delete_all}"
+							press="onDeleteItems"/>
+						<Button
+							icon="sap-icon://decline"
+							tooltip="{i18n>event_Delete_all}"
+							press="handleDeleteAll"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="7%"/>
+
+					<Column>
+						<Text text="{i18n>global_Id}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>global_User}" />
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text text="{i18n>global_Status}" />
+					</Column>
+					<Column>
+						<Text text="{i18n>global_Value}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<CheckBox select="onPressCheck"/>
+							<ObjectIdentifier title="{realDate}" text="{id}" />
+							<Text text="{user}" />
+							<Text text="{message}" />
+							<Text text="{status}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+</core:View>

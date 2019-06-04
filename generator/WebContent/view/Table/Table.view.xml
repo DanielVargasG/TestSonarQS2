@@ -1,0 +1,66 @@
+<!DOCTYPE xml>
+<mvc:View xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.view.Table.Table">
+	<Table id="idProductsTable" inset="false" items="{ path: '/', sorter: { path: 'createOn', descending: true } }">
+
+		<headerToolbar>
+					<Toolbar>
+					<Title text="{i18n>pending_Filter}" level="H2" textAlign="Right"/>
+					<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://signature"
+							tooltip="Signature"
+							press="onPressSignature"/>
+						<Button
+							icon="sap-icon://delete"
+							tooltip="{i18n>pending_Delete}"
+							press="onPressDelete"/>
+						<Button
+							icon="sap-icon://pushpin-on"
+							tooltip="{i18n>pending_Archive}"
+							press="onPressArchive"/>						
+						<Button
+							icon="sap-icon://filter"
+							tooltip="{i18n>pending_Filter}"
+							press="onPressFilter"/>	
+					</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column width="7%">
+				<Text text="" />
+			</Column>
+			<Column width="10em">
+				<Text text="{i18n>pending_Documents}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>home_template}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>pending_Dates}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>pending_User_details}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="{i18n>pending_Source}" />
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+				<Text text="{i18n>pending_Status}" />
+			</Column>
+
+		</columns>
+		<items>
+			<ColumnListItem type="Navigation" press="handleColumnListItemSelect" id="listItem">
+				<cells>
+					<CheckBox id="txt" title="{id}" valueState="Active" enabled="{check}" visible="{check}" select="onPressCheck"/>
+					<ObjectIdentifier title="{i18n>global_Id}: {id}" text="{i18n>global_Document}" />
+					<ObjectIdentifier title="{i18n>global_Id}: {templateId/id}" text="{templateId/title}, {i18n>global_Status}: {templateId/status}" />
+					<ObjectIdentifier title="{i18n>pending_Effective_Date}: {effectiveDate}" text="{i18n>pending_Create_Date}: {createOnString}" />					
+					
+					<ObjectIdentifier title="{targetUser}" text="{targetUser_firstName} {targetUser_lastName}" />
+					<Text text="{source}" />
+					<ObjectNumber number="{status}" unit="{WeightUnit}" state="{ path: 'status', formatter: 'generator.view.Table.Formatter.weightState' }" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>

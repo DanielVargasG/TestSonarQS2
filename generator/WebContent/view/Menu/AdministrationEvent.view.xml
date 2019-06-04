@@ -1,0 +1,25 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.view.AdministrationEvent" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<TileContainer id="container" tileDelete="handleTileDelete">
+				<StandardTile press="onPressEventConf" icon="sap-icon://action-settings" title="Event List Configuration" />				
+				<StandardTile press="onPressEventPending" icon="sap-icon://instance" title="Event Listener To Process " />	
+				<StandardTile press="onPressEventRegister" icon="sap-icon://sap-box" title="Event Listener History" />			
+			</TileContainer>
+		</content>
+		
+	</Page>
+</core:View>

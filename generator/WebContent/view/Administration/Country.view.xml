@@ -1,0 +1,73 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.controller.administration.Country" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable"  vAlign="Center" inset="false" items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>country_Configuration}" level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>					
+									
+					<Column width="15%">
+						<Text text="{i18n>country_Code} " />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>country_Active}" />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>country_Process_user}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>country_Process_attach}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>global_Edit}" />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>global_Delete}" />
+					</Column>
+												
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<ObjectIdentifier title="{code}" text=""/>	
+							<CheckBox text="" valueState="Active" enabled="false" selected="{active}" />
+							<CheckBox text="" valueState="Process User" enabled="false" selected="{toProcessUser}" />
+							<CheckBox text="" valueState="Process Attachment" enabled="false" selected="{processAttach}" />
+							<OverflowToolbarButton text="{i18n>global_Edit}" press="handleCreateEditCountry" icon="sap-icon://edit" />			
+							<OverflowToolbarButton text="{i18n>global_Delete}" press="handleDeleteCountry" icon="sap-icon://delete" />													
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />				
+				<OverflowToolbarButton text="Add" press="handleCreateEditCountry" icon="sap-icon://add" />
+			</OverflowToolbar>
+		</footer>
+
+	</Page>
+
+</core:View>

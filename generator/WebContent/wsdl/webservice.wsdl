@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://batch.cloud.edn" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://batch.cloud.edn" xmlns:intf="http://batch.cloud.edn" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://batch.cloud.edn" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="sayByeBye">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayByeByeResponse">
+    <complexType>
+     <sequence>
+      <element name="sayByeByeReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayHelloWorld">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayHelloWorldResponse">
+    <complexType>
+     <sequence>
+      <element name="sayHelloWorldReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sayByeByeResponse">
+
+      <wsdl:part element="impl:sayByeByeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayHelloWorldRequest">
+
+      <wsdl:part element="impl:sayHelloWorld" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayHelloWorldResponse">
+
+      <wsdl:part element="impl:sayHelloWorldResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayByeByeRequest">
+
+      <wsdl:part element="impl:sayByeBye" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="webservice">
+
+      <wsdl:operation name="sayByeBye">
+
+         <wsdl:input message="impl:sayByeByeRequest" name="sayByeByeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sayByeByeResponse" name="sayByeByeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayHelloWorld">
+
+         <wsdl:input message="impl:sayHelloWorldRequest" name="sayHelloWorldRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sayHelloWorldResponse" name="sayHelloWorldResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="webserviceSoapBinding" type="impl:webservice">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sayByeBye">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayByeByeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayByeByeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sayHelloWorld">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayHelloWorldRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayHelloWorldResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="webserviceService">
+
+      <wsdl:port binding="impl:webserviceSoapBinding" name="webservice">
+
+         <wsdlsoap:address location="http://localhost:8220/generator/services/webservice"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

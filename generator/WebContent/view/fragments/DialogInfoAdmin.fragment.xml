@@ -1,0 +1,16 @@
+<!DOCTYPE xml>
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover showHeader="false" contentWidth="700px" contentHeight="300px"
+		placement="VerticalPreferredBottom">
+		<NavContainer id="navCon2">
+			<Page id="master2" title="{i18n>global_Info} {i18n>admindata_System_parameters}">
+				<List id="list2" items="{infoModel>/}">
+					<StandardListItem title="{infoModel>id} "
+						description="{infoModel>label}" type="Active"
+						iconDensityAware="true" iconInset="true" iconColor="Critical" icon="sap-icon://hint" />
+				</List>				
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>

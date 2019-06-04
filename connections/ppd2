@@ -1,0 +1,11 @@
+#Exported connectivity destination
+#The following fields with passwords were removed:
+#Password
+#Wed Oct 25 14:37:35 COT 2017
+Name=ppd2
+URL=https\://api.staging.eu.people-doc.com/
+ProxyType=Internet
+X-API-KEY=Sk6eLsffS95wg4U2FK9Hv6b77SrG5Om7
+Type=HTTP
+Authentication=BasicAuthentication
+User=33a81514-fb7e-409f-a4ce-698f8f399f6c

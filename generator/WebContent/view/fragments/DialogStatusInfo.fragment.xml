@@ -1,0 +1,24 @@
+<!DOCTYPE xml>
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover showHeader="false" contentWidth="700px" contentHeight="300px"
+		placement="VerticalPreferredBottom">
+		<NavContainer id="navCon2">
+			<Page title="{i18n>pending_Info_status}">
+				<List  items="{/}" >
+					<StandardListItem title="{id} "
+						description="{label}" type="Active"
+						iconDensityAware="true" iconInset="true" iconColor="Critical" icon="sap-icon://message-popup" />
+				</List>				
+			</Page>
+		</NavContainer>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button
+					text="{i18n>global_Close}"
+					press="handleClosePress" />
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

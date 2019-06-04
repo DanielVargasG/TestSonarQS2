@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<job-scheduling-data xmlns="http://www.quartz-scheduler.org/xml/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.quartz-scheduler.org/xml/JobSchedulingData http://www.quartz-scheduler.org/xml/job_scheduling_data_2_0.xsd" version="1.8">
+
+	<schedule>
+		<job>
+			<name>AttachSearchJob</name>
+			<job-class>edn.cloud.business.scheduler.AttachSearchJob</job-class>
+		</job>
+		<job>
+			<name>EventListenerJob</name>
+			<job-class>edn.cloud.business.scheduler.EventListenerJob</job-class>
+		</job>
+		<job>
+			<name>MassiveLoadEmplJob</name>
+			<job-class>edn.cloud.business.scheduler.MassiveLoadEmplJob</job-class>
+		</job>
+
+		<job>
+			<name>AttachSendJob</name>
+			<job-class>edn.cloud.business.scheduler.AttachSendJob</job-class>
+		</job>
+		<job>
+			<name>EventListenerRolesJob</name>
+			<job-class>edn.cloud.business.scheduler.EventListenerRolesJob</job-class>
+		</job>
+		<job>
+			<name>SignatureStatusJob</name>
+			<job-class>edn.cloud.business.scheduler.SignatureStatusJob</job-class>
+		</job>
+		<trigger>
+			<cron>
+				<name>AttachSearchJob</name>
+				<job-name>AttachSearchJob</job-name>
+				<cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>EventListenerJob</name>
+				<job-name>EventListenerJob</job-name>
+				<cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+			</cron>
+		</trigger>
+		<trigger>
+			<cron>
+				<name>MassiveLoadEmplJob</name>
+				<job-name>MassiveLoadEmplJob</job-name>
+				<cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+			</cron>
+		</trigger>
+
+
+		<trigger>
+			<cron>
+				<name>AttachSendJob</name>
+				<job-name>AttachSendJob</job-name>
+				<cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+			</cron>
+		</trigger>
+
+		<trigger>
+			<cron>
+				<name>EventListenerRolesJob</name>
+				<job-name>EventListenerRolesJob</job-name>
+				<cron-expression>0 10,20,30,40,50 * 1/1 * ? *</cron-expression>
+			</cron>
+		</trigger>
+
+		<trigger>
+			<cron>
+				<name>SignatureStatusJob</name>
+				<job-name>SignatureStatusJob</job-name>
+				<cron-expression>0 0 0,3,6 ? * * *</cron-expression>
+			</cron>
+		</trigger>
+	</schedule>
+
+</job-scheduling-data>

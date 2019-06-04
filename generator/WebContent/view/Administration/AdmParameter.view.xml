@@ -1,0 +1,93 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.AdmParameter" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+		
+		<Toolbar>
+			<Title text="{i18n>admindata_System_parameters}" level="H2" />
+			<ToolbarSpacer />
+				<content>
+					<Button icon="sap-icon://message-information" press="onAdminInfo"/>
+				</content>
+		</Toolbar>
+		
+		
+		<IconTabBar
+		id="idIconTabBarNoIcons"
+		expanded="{device>/isNoPhone}"
+		class="sapUiResponsiveContentPadding"
+		select="handleIconTabBarSelect">
+			<items>
+				<IconTabFilter text="All" key="All" count="{/All}">				
+				</IconTabFilter>
+				<IconTabFilter text="Admin" key="Admin" count="{/Admin}">
+				</IconTabFilter>
+				<IconTabFilter text="AttachmentJob" key="AttachmentJob">
+				</IconTabFilter>
+				<IconTabFilter text="EventListener" key="EventListener">				
+				</IconTabFilter>
+				<IconTabFilter text="MassiveLoad" key="MassiveLoad">				
+				</IconTabFilter>
+				<IconTabFilter text="Signature" key="Signature">				
+				</IconTabFilter>
+				<IconTabFilter text="Structure" key="Structure">				
+				</IconTabFilter>
+				<IconTabFilter text="Log" key="Log">				
+				</IconTabFilter>
+				<IconTabFilter text="Parameters Not Configured" key="Parameters Not Configured">				
+				</IconTabFilter>
+				
+			</items>
+		</IconTabBar>
+
+			<Table id="idPrincipalTable" inset="false" visibleRowCountMode="1000" items="{ path: '/', sorter: { path: 'group', group: true } }">
+				
+				<columns>								
+					<Column width="40%">
+						<Text text="{i18n>adminparameter_Parameter}" />
+					</Column>										
+					<Column width="25%">
+						<Text text="{i18n>adminparameter_Value}" />
+					</Column>								
+					<Column width="10%">						
+					</Column>							
+					<Column width="10%">
+					</Column>							
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<ObjectIdentifier title="{nameCode}" text="{description}" />
+							<ObjectIdentifier text="{value}" title="" />															
+							<OverflowToolbarButton text="{i18n>global_Edit}" press="handleEditInsertAdmParameter" icon="sap-icon://edit" visible="{= ${value} !== 'NA'}"/>
+							<OverflowToolbarButton text="{i18n>global_Delete}" press="handleDeleteParameter" icon="sap-icon://delete" visible="{= ${value} !== 'NA'}" />						
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />				
+				<OverflowToolbarButton text="Add" press="handleEditInsertAdmParameter" icon="sap-icon://add" />
+			</OverflowToolbar>
+		</footer>
+
+	</Page>
+
+</core:View>

@@ -1,0 +1,92 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.EventAdmExpImpData"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="EXPORT IMPORT DATA. "
+		class="sapUiContentPadding">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		
+		<content>
+
+			<Toolbar>
+				<ToolbarSpacer />
+				<Title text="{i18n>eventexpimp_Data}" level="H1" />
+				<ToolbarSpacer />
+			</Toolbar>
+			
+			<Panel expandable="true" expanded="false" id="containerLayout"  headerText="{i18n>administration_Data_init}">
+				<HBox>
+					<l:VerticalLayout width="100%">
+						<Label text="{i18n>eventexpimp_Boards}" width="100%"/>					
+						<Select id="selectId" name="selectId">
+							<core:Item key="ADMP" text="1. {i18n>adminexpimp_Admin_parameters}" />
+							<core:Item key="FTMPL" text="2. {i18n>adminexpimp_Fields_template_library}" />
+							
+							<core:Item key="FMPD" text="3. {i18n>adminexpimp_Fields_appingPPD}" />
+							
+							<core:Item key="PEL" text="4. {i18n>adminexpimp_Parameters_event_listeners}" />
+							<core:Item key="COU" text="5. {i18n>adminexpimp_Country}" />
+							
+							<core:Item key="LANG" text="6. {i18n>adminexpimp_Language}" />
+							
+							
+							<core:Item key="FLD" text="7. {i18n>adminexpimp_Folders}" />
+							<core:Item key="STL" text="8. {i18n>adminexpimp_Sign_template_library}" />
+							
+							<core:Item key="TMP" text="9. {i18n>adminexpimp_Template}" />
+							
+							
+							<core:Item key="LKT" text="10. {i18n>adminexpimp_Lookuptable}" />
+							
+							<core:Item key="ROL" text="11. {i18n>adminexpimp_Data_rol}" />
+							<core:Item key="BSC" text="12. {i18n>adminexpimp_Structure_business}" />
+							<core:Item key="MNR" text="13. {i18n>adminexpimp_Manager_role}"/>
+						</Select>
+						
+						<Label text="{i18n>eventexpimp_Upload_file}" width="100%"/>
+						<u:FileUploader sendXHR="true" typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="json" id="template" name="template"
+							tooltip="{i18n>eventexpimp_Upload_file}" uploadComplete="handleUploadComplete" />
+						
+					</l:VerticalLayout>		
+				</HBox>			
+				
+				
+				<l:HorizontalLayout>
+					<l:BlockLayoutCell width="25%">
+						<Button text="{i18n>eventexpimp_Import}" press="onPressImport" size="S" scale="M" />
+					</l:BlockLayoutCell>
+					<l:BlockLayoutCell width="25%">
+						<Button text="{i18n>eventexpimp_Export}" press="onPressExport" size="S" scale="M" />
+					</l:BlockLayoutCell>
+				</l:HorizontalLayout>
+			</Panel>				
+						
+			<Panel expandable="true" expanded="false" headerText="{i18n>controlpanel_Table}" width="auto">
+				<HBox>
+					<InputListItem label="{i18n>controlpanel_Table}">
+						<Select id="selectIdTable" name="selectIdExport">							
+							<core:Item key="TABLE_AUTHO" text="{i18n>home_Authorizations}" />
+						</Select>
+							<Button text="{i18n>eventexpimp_Export}" press="onPressExportTable" size="S" scale="M" />
+					</InputListItem>
+				</HBox>
+			</Panel>
+			
+
+
+		</content>
+	</Page>
+
+</core:View>

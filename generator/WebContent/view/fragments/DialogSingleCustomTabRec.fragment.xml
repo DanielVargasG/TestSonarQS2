@@ -1,0 +1,37 @@
+<!DOCTYPE xml>
+<core:FragmentDefinition xmlns="sap.m"
+	binding="{path:'tplModel'}" xmlns:core="sap.ui.core">
+	<Popover showHeader="false" contentWidth="420px" contentHeight="300px"
+		placement="VerticalPreferredBottom">
+		<NavContainer id="navCon">
+			<Page id="master" title="{i18n>home_template}">
+				<List id="list" items="{tplModel>/}">
+					<StandardListItem title="{tplModel>title}"
+						description="{tplModel>description}, version: {tplModel>latest_version}" type="Active" press="onNavToProduct"
+						iconDensityAware="false" iconInset="false" />
+				</List>
+			</Page>
+			<Page id="detail" showNavButton="true" navButtonPress="onNavBack"
+				title="{i18n>home_template}">
+				<ObjectHeader title="{tplModel>title}">
+					<attributes>
+						<ObjectAttribute text="{tplModel>description}" />
+						<ObjectAttribute text="{tplModel>format}, {tplModel>locale}" />
+						<ObjectAttribute text="version: {tplModel>latest_version}" />
+						<ObjectAttribute text="{i18n>template_Authorization}/{tplModel>managerConfirm}"/>
+					</attributes>
+				</ObjectHeader>
+				<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="{i18n>document_Generated_document}" style="margin-left:10%" width="80%"
+						id="__button4" icon="sap-icon://accept" press="onValidatedPressed" />
+			</Toolbar>
+		</footer>
+				<content>
+					
+				</content>
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>

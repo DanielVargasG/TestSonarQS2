@@ -1,0 +1,130 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.ControlPanel"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page name="eventview" id="eventview" showNavButton="false" title="EXPORT IMPORT DATA. "
+		class="sapUiContentPadding">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		
+		<content>
+
+			<Toolbar>
+				<Title text="{i18n>controlpanel_}" level="H1" />
+				<ToolbarSpacer />
+				<content>
+					<Button icon="sap-icon://message-information" press="onVersionInfo"/>
+				</content>
+			</Toolbar>
+						
+			<Panel expandable="true" expanded="false" headerText="{i18n>controlpanel_Table_delete}" width="auto" class="sapUiResponsiveMargin">
+				<Label id="labelSelect" name="labelSelect" text="{i18n>controlpanel_Table_delete}" labelFor="queryValue" width="100%"/>
+				<Select id="selectId" name="selectId" change=".onItemSelectedTableDelete">
+					<core:Item key="TABLE_EMPLOYEE_SYNC" text="{i18n>administration_Employee_synchronization}" />
+					<core:Item key="TABLE_MASSIVE_LOAD" text="{i18n>administration_remove_massload_by_id}" />
+					<core:Item key="FMPD" text="{i18n>mappingfield_name}" />							
+					<core:Item key="ERRORLOGS" text="{i18n>administration_Logger}" />							
+					<core:Item key="TABLE_EMPLOYEE_SYNC" text="{i18n>administration_Employee_synchronization}" />
+				</Select>
+				
+				<Button text="{i18n>controlpanel_Delete_all}" press="onPressDelete" size="S" scale="M" />
+				<Label id="labelIdDelete" name="labelIdDelete" text="{i18n>global_Id} {i18n>loadUser}" labelFor="queryValue" width="100%" visible="false"/>					
+				<Input id="deleteParameter" name="deleteParameter" width="350px"  visible="false"/>
+			</Panel>
+						
+			<Panel expandable="true" expanded="false" headerText="{i18n>controlpanel_Test_queries}" width="auto" class="sapUiResponsiveMargin">
+					<l:VerticalLayout width="100%">
+						<Label text="{i18n>controlpanel_Query}" labelFor="queryValue" width="100%"/>
+						<Input id="queryValue" name="queryValue" width="400px"/>
+						<Button text="{i18n>controlpanel_Query_execute}" placeholder="Query" press="onPressQuery" size="S" scale="M" />				
+				
+					</l:VerticalLayout>
+					<HBox>	
+						<TextArea id="responseQueryValue" value="" growing="false" width="400px" height="400px"/>							
+					</HBox>
+			</Panel>
+			<Panel expandable="true" expanded="false" headerText="{i18n>controlpanel_Enable_disable_job}" width="auto" class="sapUiResponsiveMargin">
+				<Toolbar>
+				<Label text="{i18n>controlpanel_Job_employee}" level="H2"/>
+					<ToolbarSpacer />
+					<Switch id="JobEmployee" state="true" customTextOn="{i18n>global_Yes}" customTextOff="{i18n>global_No}"></Switch>
+				</Toolbar>
+				<Toolbar >
+					<Label text="{i18n>controlpanel_Job_load}" level="H2"/>
+					<ToolbarSpacer />
+					<Switch id="JobLoad" state="true" customTextOn="{i18n>global_Yes}" customTextOff="{i18n>global_No}" ></Switch>
+				</Toolbar>
+				<Toolbar >
+					<Label text="{i18n>controlpanel_Job_eventlistener}" level="H2"/>
+					<ToolbarSpacer />
+					<Switch id="JobEventListener" state="true" customTextOn="{i18n>global_Yes}" customTextOff="{i18n>global_No}" change="OnPressJobEventListener"></Switch>
+				</Toolbar>
+				<Toolbar>
+				
+					<ToolbarSpacer />
+						<Button text="{i18n>controlpanel_Save}" press="OnPressJob" size="S" scale="M" width="100%" />
+				
+				</Toolbar>
+			</Panel>
+			<l:VerticalLayout>
+				<Panel expandable="true" expanded="false" headerText="{i18n>controlpanel_Test_event}" width="auto" class="sapUiResponsiveMargin">	
+						<Label text="{i18n>event_Name}" labelFor="queryValue" width="100%"/>
+						<Select id="eventId" name="eventId" items="{path: '/listEvents',sorter: { path: 'eventId' }}" width="50%">
+							<core:Item key="{id}" text="{eventId}" />
+						</Select>	
+						<Label text="{i18n>event_User_id}" labelFor="queryValue" width="100%"/>						
+						<Input id="userIdEventValue" name="userIdValue" width="400px"/>
+						
+						<Label text="{i18n>pending_Effective_Date}" labelFor="queryValue" width="100%"/>						
+						<DatePicker id="dateEffEvent" name="dateEffEvent" valueFormat="yyyy-MM-dd" width="400px"/>
+						
+						<Label text="{i18n>event_Seq}" labelFor="queryValue" width="100%"/>						
+						<Input id="userSeq" name="userSeq" width="400px"/>
+						<Label text="" labelFor="queryValue" width="100%"/>	
+						<Button text="{i18n>controlpanel_Generate_event}" press="onGenerateQuery" size="S" scale="M" />							
+							
+				</Panel>
+				
+				<Panel expandable="true" expanded="false" headerText="{i18n>team_Document_attachment}" width="auto" class="sapUiResponsiveMargin">
+							
+						<Label text="{i18n>event_User_id}" labelFor="queryValue" width="100%"/>						
+						<Input id="userIdAttachValue" name="userIdAttachValue" width="400px"/>
+						
+						<Label text="{i18n>attach_Create_date} (From:)" labelFor="queryValue" width="100%"/>						
+						<DatePicker id="dateInitAttach" name="dateInitAttach" valueFormat="yyyy-MM-dd" width="400px"/>
+						
+						<Label text="{i18n>attach_Create_date} (To:)" labelFor="queryValue" width="100%"/>						
+						<DatePicker id="dateEndAttach" name="dateEndAttach" valueFormat="yyyy-MM-dd" width="400px"/>
+						
+						<Label text="" labelFor="queryValue" width="100%"/>	
+						<Button text="{i18n>adminatt_sync_generate_events}" press="onSearchAttchQuery" size="S" scale="M" />
+				</Panel>				
+				
+				<Panel expandable="true" expanded="false" headerText="{i18n>event_send_noti_by_email}" width="auto" class="sapUiResponsiveMargin">
+					<HBox>
+					<InputListItem label="">
+						<Select id="selectIdNoti" name="selectId">							
+							<core:Item key="SYNC" text="{i18n>adminatt_Synchronizations_process}" />														
+						</Select>
+							<Button text="{i18n>global_Send}" press="onPressSendEmailNoti" size="S" scale="M" />
+					</InputListItem>
+				</HBox>
+			</Panel>				
+			
+			</l:VerticalLayout>			
+
+		</content>
+	</Page>
+
+</core:View>

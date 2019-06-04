@@ -1,0 +1,30 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.controller.home.Home" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<TileContainer id="container" tileDelete="handleTileDelete" >
+				<StandardTile press="onPressMyDoc" visible="{iConfig>/seesPerso}" icon="sap-icon://basket" title="{i18n>global_Mydocument}"  />
+				<StandardTile press="onPressMySign" visible="{iConfig>/hasTemplates}" icon="sap-icon://signature" title="{i18n>home_Signature}" number="{/businessData/CountSign}" numberUnit="{i18n>home_Signature}" info="{i18n>home_Pending}" infoState="Warning"/>				
+				<StandardTile press="onPressDocuments" visible="{iConfig>/seesTemplates}" icon="sap-icon://restart" number="{/businessData/Count}" numberUnit="docs" info="{i18n>home_Pending}" title="{i18n>home_PendingDocs}" infoState="{/businessData/Status}" />
+				<StandardTile press="onPressTeam" visible="{iConfig>/seesTeamTemplate}" icon="sap-icon://company-view" number="{iConfig>/countMng}/{iConfig>/countHr}" numberUnit="{i18n>home_Reports}" title="{i18n>home_Generate_document_for_team}" />
+				<StandardTile press="onPressTeam" visible="{iConfig>/seesTeamNoTemplate}" icon="sap-icon://company-view" number="{iConfig>/countMng}/{iConfig>/countHr}" numberUnit="{i18n>home_Reports}" title="{i18n>home_Get_my_team}" />
+				<StandardTile press="onPressRecruiting" visible="{iConfig>/seesRecruiting}" icon="sap-icon://employee-pane" title="{i18n>home_Recruiting}" />
+			</TileContainer>
+		</content>
+		<footer id="footer">
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />
+				<Button id="adminHome" text="{i18n>home_Administration}" visible="false" press="onPressAdmin" icon="sap-icon://customize" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</core:View>

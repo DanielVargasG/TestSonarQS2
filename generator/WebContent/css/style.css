@@ -1,0 +1,82 @@
+/* Enter your custom styles here */
+.productInfo {
+	position: absolute !important;
+	left: 0 !important;
+	bottom: 0 !important;
+	background-color: rgb(255, 255, 255) !important;
+	background-color: rgba(255, 255, 255, 0.7) !important;
+}
+/*
+.productShortDescription {
+  font-weight: bold;
+}
+*/
+.productNumber {
+	color: #666 !important;
+}
+
+/* Image Grid */
+.uoMImgGrid {
+	padding: 0.25em !important;
+	overflow: hidden !important;
+	background-color: #fff !important;
+}
+
+.logoApp{
+	margin-top:-4px; 
+}
+
+.uoMImgGrid .sapMCLI {
+	float: left !important;
+}
+
+.uoMImgGrid .sapMLIBContent {
+	position: relative !important;
+}
+
+.uoMImgGrid .sapMImg {
+	display: block !important;
+	max-width: 100% !important;
+	width: 180px !important;
+	margin: 0 auto !important;
+	height:180px;
+	border-raduis: 90px;
+	-moz-border-radius: 90px;
+	-webkit-border-radius: 90px;
+}
+
+.uoMImgGrid .sapMCLI:nth-child(odd) { //
+	clear: left !important;
+}
+
+.uoMImgGrid .sapMCLI {
+	width: 16.666666666% !important;
+	padding: 0.25em !important;
+}
+
+.uoMImgGrid .sapMText {
+	font-size: 1.15em !important;
+}
+
+.uoMImgGrid .sapMCLI:nth-child(6n+1) {
+	clear: left !important;
+}
+
+.uoMImgGrid .sapMCLI:nth-child(5n+1) {
+	clear: none !important;
+}
+
+.mt {
+	margin-top: 15px;
+}
+
+.hidebutton {
+	visibility: hidden;
+}
+
+#dial1-cont{
+	padding-left:10%;
+}
+.sapMPageFooter .sapMFooter-CTX .sapMBtnInner{
+	color: #cae4fb !important;
+}

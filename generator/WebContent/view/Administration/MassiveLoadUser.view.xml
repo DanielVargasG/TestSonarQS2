@@ -1,0 +1,158 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.controller.administration.MassiveLoadUser"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>loadUser}"
+		class="sapUiContentPadding">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">					
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		
+		<content>
+		
+			<Panel expandable="true" expanded="true" headerText="{i18n>event_Last_executions_jobs}" width="auto" >
+				<Table id="idTableLastProcess" inset="false" items="{ path: '/', sorter: { path: 'startDatePpdOn' } }">
+					<headerToolbar>			
+						<Toolbar>
+							<l:VerticalLayout
+									class="sapUiContentPadding"
+									width="85%">
+								<MessageStrip
+										id="JobEventMsg"
+										text="The job is inactive, check its status in the control panel"
+										type="Error"
+										enableFormattedText="true"
+										showIcon="true"
+										visible="false">
+								</MessageStrip>
+						</l:VerticalLayout>
+						</Toolbar>		
+					</headerToolbar>
+					<columns>					
+						<Column width="10%">
+							<Text text="{i18n>event_Job}" />
+						</Column>					
+						<Column width="15%">
+							<Text text="{i18n>event_Info_last_execution}" />
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>							
+								<Label class="mt" text="{description}" />
+								<Label class="mt" text="{value}" />
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>			
+			</Panel>			
+			
+			<Panel expandable="true" expanded="false" headerText="{i18n>loadUser_Upload_file}" width="auto">
+				<Toolbar>
+					<Label text="{i18n>loadUser_name_load} " design="Bold" />
+					<Input id="nameLoad" name="nameLoad" width="200px"/>
+				</Toolbar>
+				
+				<Toolbar>
+					<Label text="* {i18n>loadUser_Upload_file} " design="Bold" />
+					<u:FileUploader sendXHR="true" typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="csv" id="loadUser" name="loadUser" tooltip="{i18n>loadUser_Upload_file}" uploadComplete="handleUploadComplete" />
+					
+					<Button text="{i18n>loadUser_Import}" press="onPressImport" size="S" scale="M" />
+				</Toolbar>
+			
+				<Toolbar>
+					<Label text="{i18n>country_Process_attach}" design="Bold" />
+					<CheckBox id="onbAttach" name="onbAttach" text="{i18n>mappingfield_OnBoarding}"/>
+					<Label text=" " design="Bold" />
+					<CheckBox id="recAttach" name="recAttach" text="{i18n>mappingfield_Recruiting}"/>
+					<Label text=" " design="Bold" />
+					<CheckBox id="ecAttach" name="ecAttach" text="{i18n>mappingfield_Employee_central}"/>
+					<Label text=" " design="Bold" />
+					<CheckBox id="tmpAttach" name="tmpAttach" text="{i18n>template}"/>
+				</Toolbar>
+			</Panel>
+			
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'statusLabel', group: true, descending: true } }">
+				<headerToolbar>
+					<Toolbar>
+						
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://synchronize"
+							tooltip="{i18n>global_Info}"
+							press="handleRefreshData"/>
+						
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="12%">
+						<Text text="{i18n>global_Status}" />
+					</Column>
+					
+					<Column width="22%">
+						<Text text="{i18n>loadUser_Created_file}" />
+					</Column>
+					
+					<Column width="12%">
+						<Text text="{i18n>loadUser_pending} / {i18n>loadUser_charged}" />
+					</Column>								
+					
+					<Column width="15%">
+						<Text text="{i18n>loadUser_Dates}" />
+					</Column>				
+						
+					<Column width="9%">
+						<Text text="{i18n>loadUser_employee}" />
+					</Column>
+					
+					<Column width="10%">
+						<Text text="{i18n>global_Observations}" />
+					</Column>
+						
+					<Column width="5%">
+						<Text text="{i18n>global_Edit}" />
+					</Column>
+					
+					<Column width="5%">
+						<Text text="{i18n>global_log}" />
+					</Column>
+														
+					<Column width="9%">
+						<Text text="{i18n>global_statistics}" />
+					</Column>
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier text="{i18n>global_Id}: {id}"/>							
+							<ObjectIdentifier title="{createUser}"  text="{nameLoad}"/>
+							<ObjectIdentifier title="{totalReg} / {loadReg} " text=""/>							
+														
+							<ObjectIdentifier title="" text="{i18n>event_CreateDate}: {createOnString}" />							
+							<OverflowToolbarButton text="{i18n>loadUser_employee}" press="onUserPress" icon="sap-icon://attachment-photo" />
+							<OverflowToolbarButton text="{i18n>event_Observation}" press="onObservationPress" icon="sap-icon://notes" />
+							<OverflowToolbarButton text="{i18n>event_Change_status}" press="onChangeUser" icon="sap-icon://edit" />
+							<OverflowToolbarButton text="{i18n>loadUser_DownloadLog}" press="onDownloadError" icon="sap-icon://download" />			
+							<OverflowToolbarButton text="{i18n>global_statistics}" press="onPressStatistics" icon="sap-icon://bar-chart" />
+											
+														
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+	</Page>
+
+</core:View>

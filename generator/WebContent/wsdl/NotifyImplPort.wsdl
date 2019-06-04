@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://notification.event.successfactors.com" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://www.w3.org/ns/wspolicy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurityutility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="NotifyImplService" targetNamespace="http://notification.event.successfactors.com">
+    <wsdl:types>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://notification.event.successfactors.com">
+            <element name="ExternalEvent" type="tns:ExternalEvent"/>
+            <element name="ExternalEventResponse" type="tns:ExternalEventResponse"/>
+            <complexType name="ExternalEvent">
+                <sequence>
+                    <element form="qualified" minOccurs="0" name="externalEventMeta" type="tns:eenAlertRequestMeta"/>
+                    <element form="qualified" minOccurs="0" name="events" type="tns:events"/>
+                </sequence>
+            </complexType>
+            <complexType name="eenAlertRequestMeta">
+                <sequence>
+                    <element form="qualified" minOccurs="0" name="externalEventId" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="type" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="publishedAt" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="publishedBy" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="effective" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="repost" type="xsd:boolean"/>
+                </sequence>
+            </complexType>
+            <complexType name="events">
+                <sequence>
+                    <element form="qualified" maxOccurs="unbounded" minOccurs="0" name="event" type="tns:eenAlertRequestData"/>
+                </sequence>
+            </complexType>
+            <complexType name="eenAlertRequestData">
+                <sequence>
+                    <element form="qualified" minOccurs="0" name="eventId" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="entityType" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="effectiveStartDate" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="publishedAt" type="xsd:long"/>
+                    <element form="qualified" minOccurs="0" name="publishedBy" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="repost" type="xsd:boolean"/>
+                    <element form="qualified" minOccurs="0" name="entityKeys">
+                        <complexType>
+                            <sequence>
+                                <element form="qualified" maxOccurs="unbounded" minOccurs="0" name="entityKey" type="tns:param"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element form="qualified" minOccurs="0" name="params">
+                        <complexType>
+                            <sequence>
+                                <element form="qualified" maxOccurs="unbounded" minOccurs="0" name="param" type="tns:param"/>
+                            </sequence>
+                        </complexType>
+                    </element>
+                    <element form="qualified" minOccurs="0" name="eventPayload" type="xsd:anyType"/>
+                </sequence>
+            </complexType>
+            <complexType name="param">
+                <sequence>
+                    <element minOccurs="0" name="name" type="xsd:string"/>
+                    <element minOccurs="0" name="value" type="xsd:string"/>
+                </sequence>
+            </complexType>
+            <complexType name="ExternalEventResponse">
+                <sequence>
+                    <element form="qualified" minOccurs="0" name="responsePayload" type="tns:eenAlertResponsePayload"/>
+                </sequence>
+            </complexType>
+            <complexType name="eenAlertResponsePayload">
+                <sequence>
+                    <element form="qualified" minOccurs="0" name="entityId" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="errorCode" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="errorMessage" type="xsd:string"/>
+                    <element form="qualified" minOccurs="0" name="status" type="xsd:int"/>
+                    <element form="qualified" minOccurs="0" name="statusDate" type="xsd:dateTime"/>
+                    <element form="qualified" minOccurs="0" name="statusDetails" type="xsd:string"/>
+                </sequence>
+            </complexType>
+        </schema>
+    </wsdl:types>
+    <wsdl:message name="ExternalEvent">
+        <wsdl:part element="tns:ExternalEvent" name="parameters"/>
+    </wsdl:message>
+    <wsdl:message name="ExternalEventResponse">
+        <wsdl:part element="tns:ExternalEventResponse" name="parameters"/>
+    </wsdl:message>
+    <wsdl:portType name="INotify">
+        <wsdl:operation name="ExternalEvent">
+            <wsdl:input message="tns:ExternalEvent" wsam:Action="http://notification.event.successfactors.com/INotify/ExternalEventRequest"/>
+            <wsdl:output message="tns:ExternalEventResponse" wsam:Action="http://notification.event.successfactors.com/INotify/ExternalEventResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="NotifyImplPortBinding" type="tns:INotify">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ExternalEvent">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input>
+            <wsdlsoap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <wsdlsoap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="NotifyImplService">
+        <port binding="tns:NotifyImplPortBinding" name="NotifyImplPort">
+            <soap:address location="http://localhost:8225/generator/services/NotifyImplPort"/>
+        </port>
+    </wsdl:service>
+</wsdl:definitions>

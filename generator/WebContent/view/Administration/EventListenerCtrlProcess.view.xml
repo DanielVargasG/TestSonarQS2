@@ -1,0 +1,137 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" controllerName="generator.view.Administration.EventListenerCtrlProcess" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+		
+			<Table id="idTableLastProcess" inset="false" items="{ path: '/', sorter: { path: 'startDatePpdOn' } }">
+				<headerToolbar>			
+					<Toolbar>
+						<Title text="{i18n>event_Last_executions_jobs}" level="H2" />
+						<l:VerticalLayout
+								class="sapUiContentPadding"
+								width="85%">
+							<MessageStrip
+									id="JobEventMsg"
+									text="The job is inactive, check its status in the control panel"
+									type="Error"
+									enableFormattedText="true"
+									showIcon="true"
+									visible="false">
+							</MessageStrip>
+					</l:VerticalLayout>
+					</Toolbar>		
+				</headerToolbar>
+				<columns>					
+					<Column width="10%">
+						<Text text="{i18n>event_Job}" />
+					</Column>					
+					<Column width="15%">
+						<Text text="{i18n>event_Info_last_execution}" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<Label class="mt" text="{description}" />
+							<Label class="mt" text="{value}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>		
+			
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'startDatePpdOn' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>event_Listener_process}" level="H2" />
+						<ToolbarSpacer/>
+						<Button
+							class="roundBtn"
+							type="Accept"
+							text="{i18n>event_Current}"
+							icon="sap-icon://present"
+							press="onPressCurrent"/>
+						<Button
+							class="roundBtn" 
+							type="Reject"
+							text="{i18n>event_Future}"
+							icon="sap-icon://future"
+							press="onPressFuture"/>
+						<Button
+							visible="false"
+							icon="sap-icon://message-information"
+							tooltip="{i18n>global_Info}"
+							press="onPressInfo"/>	
+						<Button
+							icon="sap-icon://synchronize"
+							tooltip="{i18n>global_Info}"
+							press="handleRefreshData"/>
+							
+							<Button
+							visible="false"
+							icon="sap-icon://filter"
+							tooltip="{i18n>global_Filters}"
+							press="onPressFilter"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>		
+					<Column width="15%">
+						<Text text="{i18n>global_Status}" />
+					</Column>	
+					<Column width="8%">
+						<Text text="{i18n>event_Retries}" />
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>event_User_id}" />
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>event_Start_date}" />
+					</Column>
+					<Column width="17%">
+						<Text text="{i18n>event_Event_dates}" />
+					</Column>					
+					<Column width="9%">
+						<Text text="{i18n>global_Observations}" />
+					</Column>	
+					<Column width="9%">
+						<Text text="{i18n>event_Attachment}" />
+					</Column>	
+					<Column width="9%">
+						<Text text="{i18n>global_Edit}" />
+					</Column>				
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<ObjectIdentifier title="{statusLabel}" text="{i18n>global_Id}: {id}"/>
+							<Label class="mt" text="{retriesInfo}" />
+							<ObjectIdentifier title="" text="{i18n>event_User_id}: {userIdPpd} / {i18n>event_Seq}: {seqNumberPpd} / {i18n>global_country}: {userCountryString}" />							
+							<ObjectIdentifier title="{i18n>event_Start_date}: {startDatePpdOnString}" text="{i18n>event_Instantaneous_date}: {eventListenerParam/isDateinstant}" />
+							<ObjectIdentifier title="{i18n>event_Last_update}: {lastUpdateOnString}" text="{i18n>event_CreateDate}: {createOnString}. {i18n>time_processing}: {timeProcessing}seg." />
+							
+							<OverflowToolbarButton text="{i18n>event_Observation}" press="onObservationPress" icon="sap-icon://notes" />
+							<OverflowToolbarButton text="{i18n>event_Attachment}" press="onAttachPress" icon="sap-icon://attachment-photo" />
+							<OverflowToolbarButton text="{i18n>event_Change_status}" press="onChangeStatus" icon="sap-icon://edit" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+
+</core:View>

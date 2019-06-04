@@ -1,0 +1,33 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.view.Menu.AdministrationMapping" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<TileContainer id="container" tileDelete="">
+				<StandardTile press="onPressStructure" icon="sap-icon://org-chart" title="{i18n>admindata_Business_structure_configuration}" />
+				<StandardTile press="onPressEventCountry" icon="sap-icon://filter-fields" title="{i18n>admindata_Country}" />
+				<StandardTile press="onPressLanguage" visible="{iConfig>/hasTemplates}" icon="sap-icon://geographic-bubble-chart" title="{i18n>language}" />
+				<StandardTile press="onPressMappingRolePpd" icon="sap-icon://role" title="{i18n>adminmapping_Role_mapping_peopledoc}" />
+				<StandardTile press="onPressManagerRole" icon="sap-icon://manager" title="{i18n>managerRole_}" />
+				
+				<!-- <StandardTile press="onPressMappingFieldPpd" icon="sap-icon://exit-full-screen" title="{i18n>adminmapping_Field_mapping_integrations}" />			
+				
+				<StandardTile press="onPressMappingTempFields" icon="sap-icon://sales-document" title="{i18n>adminmapping_Mapping_template_fields_library}" />
+				<StandardTile press="onPressMappingSignatures" icon="sap-icon://write-new-document" title="{i18n>adminmapping_Mapping_signatures}" />
+				<StandardTile press="onPressEventLookup" icon="sap-icon://sys-find" title="Lookup table" /> -->
+			</TileContainer>
+		</content>
+		
+	</Page>
+</core:View>

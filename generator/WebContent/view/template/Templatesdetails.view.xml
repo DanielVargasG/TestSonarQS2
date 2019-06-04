@@ -1,0 +1,155 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" controllerName="generator.controller.template.Templatesdetails" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{/title} ({i18n>global_Id}: {/idTemplate})" intro="{i18n>template}, {i18n>global_Id} Peopledoc: {/id}"  responsive="true" fullScreenOptimized="false" backgroundDesign="Solid" showTitleSelector="true" titleSelectorPress="onPressEdit"  icon="sap-icon://doc-attachment">
+				<!-- <attributes> <ObjectAttribute title="Id" text="{/id}" /> <ObjectAttribute title="Title" text="{/title}" /> <ObjectAttribute title="Description" text="{/description}" /> <ObjectAttribute title="Format" text="{/format}" /> <ObjectAttribute title="Latest Version" text="{/latest_version}" /> <ObjectAttribute title="Enabled" text="{/enabled}" /> <ObjectAttribute title="Locale" text="{/locale}" /> <ObjectAttribute title="Event Listener" text="{/nameEventListener}" /> </attributes> -->
+				<statuses>
+					<ObjectStatus text="{i18n>templatedetails_Problems}" id="idObjectStatus" icon="sap-icon://alert" width="100%" class="warn" visible="false"/>
+				</statuses>
+				<headerContainer>
+					<IconTabBar  expandable="false" expanded="true"  responsive="true" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" id="idIconTabBar" select="handleIconTabBarSelect">
+						<items>
+							<IconTabFilter text="{i18n>templatedetails_Upload_new_template}" icon="sap-icon://upload" key="upload">
+								<u:FileUploader sendXHR="true" id="template" name="template" uploadUrl="/generator/rst/json/upload/{/idTemplate}/{/id}/{/latest_version}/" width="100%" tooltip="{i18n>templatedetails_Upload_your_file}" uploadComplete="handleUploadComplete" change="handleValueChange" typeMissmatch="handleTypeMissmatch" style="Emphasized" fileType="txt,jpg,doc,docx" placeholder="{i18n>templatedetails_Choose_file_upload}">
+								</u:FileUploader>
+								<Button text="{i18n>templatedetails_Upload_file}" press="handleUploadPress" />
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>templatedetails_Preview}" icon="sap-icon://documents" key="preview" enabled="{/isFileUpload}">
+								<Carousel id="previewCarousel" class="sapUiContentPadding" loop="false"> 
+									
+								</Carousel>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>global_Variables}" icon="sap-icon://key" iconColor="Positive" key="variable" enabled="{/isFileUpload}">
+							
+							
+								<f:SimpleForm id="table_fields2" minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout">
+									<f:title>
+										<core:Title text="{i18n>global_Metadata}" />
+									</f:title>
+									<MultiComboBox id="multiMetada" selectionFinish="handleSelectionFinish" width="100%"></MultiComboBox>
+								</f:SimpleForm>
+									
+								<f:SimpleForm id="table_fields" minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout">
+									<f:title>
+										<core:Title text="{i18n>global_Variables}" />
+									</f:title>
+									
+									<Table id="idFieldsTable" width="100%" inset="false" items="{ path: '/generateVariables/variables' }">
+										<columns>
+											<Column width="36%" demandPopin="true">
+												<Text text="{i18n>templatedetails_Name_peopledoc}" />
+											</Column>
+											<Column width="60%">
+												<Text text="{i18n>templatedetails_Mapping_template_fields_library}" />
+											</Column>
+											<Column width="60%">
+												<Text text="{i18n>global_is_table}" />
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>
+													<Label class="mt" text="{slug}" />
+													<Label class="mt" text="{path}" />
+													<ObjectIdentifier title="Yes" text="" visible="{flagAux}" />													
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</f:SimpleForm>
+							</IconTabFilter>
+							<IconTabFilter id="id1" text="{i18n>home_Signature}" icon="sap-icon://signature" iconColor="Positive" key="sign" enabled="{/isFileWithSign}">
+								<f:SimpleForm id="table_signatures" minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout">
+									<f:title>
+										<core:Title id="id2" text="{i18n>home_Signature}" />
+									</f:title>
+									<Table id="idSignatureTable" width="100%" inset="false" items="{ path: '/singatureGroup/0/signatures' }">
+										<columns>											
+											<Column width="10%" demandPopin="true">
+												<Text id="id3" text="{i18n>home_Signature}" />
+											</Column>
+											<Column width="40%">
+												<Text text="{templatedetails_Signature_name}" />
+											</Column>
+											<Column width="15%">
+												<Text text="{i18n>templatedetails_Constants_value}" />
+											</Column>
+											<Column width="10%">
+												<Text text="{i18n>global_Order}" />
+											</Column>
+											<Column width="10%">
+												<Text text="{i18n>templatedetails_Actions}" />
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>													
+													<Label class="mt" text="{slug}" />
+													<Label class="mt" text="{path}" />
+													<CheckBox text="" valueState="constants" enabled="false" selected="{flag}" />
+													<Label class="mt" text="{order}" />
+													<Button text="{i18n>global_Edit}" press="handleSignaturePress" />
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</f:SimpleForm>
+							</IconTabFilter>
+							<IconTabFilter text="{i18n>global_Filters}" icon="sap-icon://filter" iconColor="Positive" enabled="{/isFileUpload}">
+								<OverflowToolbarButton text="Delete" press="handleAddTemplateFilter" icon="sap-icon://add" />
+								<f:SimpleForm id="table_filter" minWidth="1024" maxContainerCols="2" layout="ResponsiveGridLayout">
+									<f:title>
+										<core:Title text="{i18n>global_Filters}" />
+									</f:title>
+									<Table id="idFilterTable" width="100%" inset="false" items="{ path: '/filters' }">
+										<columns>											
+											<Column width="40%" demandPopin="true">
+												<Text text="{i18n>templatedetails_Filters}" />
+											</Column>
+											<Column width="30%">
+												<Text text="{i18n>global_Value}" />
+											</Column>
+											<Column width="10%">
+											</Column>
+											<Column width="10%">
+											</Column>
+										</columns>
+										<items>
+											<ColumnListItem>
+												<cells>													
+													<Label class="mt" text="{path}" />
+													<Label class="mt" text="{value}" />
+													<OverflowToolbarButton text="{i18n>global_Edit}" press="handleEditTemplateFilter" icon="sap-icon://edit" />
+													<OverflowToolbarButton text="{i18n>global_Delete}" press="handleDeleteTemplateFilter" icon="sap-icon://delete" />
+												</cells>
+											</ColumnListItem>
+										</items>
+									</Table>
+								</f:SimpleForm>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</headerContainer>
+			</ObjectHeader>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button type="Reject" text="{i18n>global_Delete}" press="onPressDelete" sId="{/id})" />
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

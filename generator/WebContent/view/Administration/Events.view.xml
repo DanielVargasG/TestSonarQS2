@@ -1,0 +1,77 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.Events" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>adminevent_Event_list_configuration}" level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>					
+					<Column width="20%">
+						<Text text="{i18n>event_Id}" />
+					</Column>					
+					<Column width="10%">
+						<Text text="{i18n>event_Is_update}" />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>event_Is_hire}" />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>event_Is_terminate}" />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>event_Enabled}" />
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>event_Effective_date_instaneous}" />
+					</Column>			
+					<Column width="10%">						
+					</Column>							
+					<Column width="10%">
+					</Column>							
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<ObjectIdentifier title="{eventId}" text=""/>				
+							<CheckBox text="" valueState="Is Update" enabled="false" selected="{isUpdate}" />		
+							<CheckBox text="" valueState="Is Hire" enabled="false" selected="{isHire}" />
+							<CheckBox text="" valueState="Is Terminate" enabled="false" selected="{isTerminate}" />
+							<CheckBox text="" valueState="Enabled" enabled="false" selected="{isEnabled}" />
+							<CheckBox text="" valueState="Effective Date /\n Instantaneous" enabled="false" selected="{isDateinstant}" />							
+							<OverflowToolbarButton text="{i18n>global_Edit}" press="handleEditEvent" icon="sap-icon://edit" />
+							<OverflowToolbarButton text="{i18n>global_Delete}" press="handleDeleteEvent" icon="sap-icon://delete" />						
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />				
+				<OverflowToolbarButton text="{i18n>global_Add}" press="handleAddEvent" icon="sap-icon://add" />
+			</OverflowToolbar>
+		</footer>
+
+	</Page>
+
+</core:View>

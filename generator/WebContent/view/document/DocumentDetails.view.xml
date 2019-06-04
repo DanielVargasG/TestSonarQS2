@@ -1,0 +1,304 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.controller.document.DocumentDetails" xmlns:f="sap.ui.layout.form"
+	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="docDetailsMasterPage" title="{b_i18n>EMPLOYEES_MASTER_PAGE_NAME}"
+		scrollToLoad="false" showNavButton="true" navButtonTap="onNavPressed">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo"
+						type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader
+				title="{i18n>document_Id_document}: {/document/id} - {i18n>global_Status}: {/document/status} - {i18n>global_User}: {/recuser/firstName}{/user/personalInfoNav/results/0/firstName}           {/recuser/lastName}{/user/personalInfoNav/results/0/lastName}"				
+				backgroundDesign="Solid" icon="sap-icon://doc-attachment">
+				<attributes>
+					<ObjectAttribute text="{i18n>document_Problems_document_generation}" id="idObjectStatus" icon="sap-icon://alert" width="100%" class="warn" visible="false"/>
+				</attributes>
+			</ObjectHeader>
+			<IconTabBar expanded="{device>/isNoPhone}" select="onVersionPressed"
+				class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" id="idIconTabBar">				
+				<items>
+					<IconTabFilter text="{i18n>global_Info} " icon="sap-icon://hint" key="info">
+						
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							layout="ResponsiveGridLayout">
+							<f:title>
+								<core:Title text="{i18n>document_User_information}" />
+							</f:title>
+							<Link text="" />
+							<Label visible="{/userpresent}" text="{i18n>document_Hire_date}" />
+							<Text text="{/user/hireDate}" />
+							<Label text="" />
+							
+							<Label visible="{/userpresent}" text="{i18n>global_User}" />
+							<Link
+								text="{/document/owner/firstName} {/document/owner/lastName} ({/document/owner/userId})" />
+							
+							<Link text="" />
+							<Label visible="{/userpresent}" text="{i18n>document_Company}" />
+							<Text
+								text="{/user/employmentNav/results/0/jobInfoNav/results/0/company} ({/user/employmentNav/results/0/jobInfoNav/results/0/company})" />
+							<Label visible="{/userpresent}" text="{i18n>document_Position}" />
+							<Text
+								text="{/user/employmentNav/results/0/jobInfoNav/results/0/jobTitle}" />
+							<Label visible="{/userpresent}" text="{i18n>document_Location}" />
+							<Text
+								text="{/user/employmentNav/results/0/jobInfoNav/results/0/location}" />
+						</f:SimpleForm>
+						
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							layout="ResponsiveGridLayout">
+							<f:title>
+								<core:Title text="{i18n>document_Id_document}" />
+							</f:title>
+							<Label text="{i18n>document_Id_document}" /> <Link text="{/document/id} " />
+							<Label text="{i18n>document_State}" /> <Link text="{/document/status} " />
+							<Label text="{i18n>document_Export_format_document}" /> <Link text="{/document/outputFormat} " />
+							<Label text="{i18n>document_Date_create}" /> <Link text="{/document/createOnString} " />
+							<Label text="{i18n>global_Source}" /> <Link text="{/document/source} " />
+							<Label text="{i18n>language}" /> <Link text="{/document/language}" />
+							<Label text="{i18n>team_Date}" /> <Link text="{/document/effectiveDate}" />
+						</f:SimpleForm>
+
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							layout="ResponsiveGridLayout">
+							<f:title>
+								<core:Title text="{i18n>template_Info}" />
+							</f:title>
+							<Label text="{i18n>template}" /> <Link text="{/document/templateId/id} - {/document/templateId/title}" />
+							<Label text="{i18n>document_Name_event_listener}" /> <Link text="{/document/templateId/eventListenerParam/eventId} " />	
+							<Label text="{i18n>template_Manager_confirmation}" /> <Link text="{/document/templateId/managerConfirm} " />							
+							<Label text="{i18n>signature_technology}" /> <Link text="{/document/templateId/typeSign} " />
+						</f:SimpleForm>
+
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>global_Variables}" icon="sap-icon://task"
+						iconColor="Critical" key="variable" enabled="{/myself}">
+
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							layout="ResponsiveGridLayout">
+							<f:title>
+								<core:Title text="{i18n>global_Variables}" />
+							</f:title>
+
+							<Table id="idFieldsTable" inset="false"
+								items="{ path: '/docInfo/generateVariables/variables/' }">
+
+								<columns>
+									<Column width="25%" demandPopin="true">
+										<Text text="{i18n>global_Name}" />
+									</Column>
+									<Column width="55%" demandPopin="true">
+										<Text text="{i18n>global_Value}" />
+									</Column>
+									<Column width="10%" style="text-align:center;">
+										<Text text="{i18n>document_Was_edit}" />
+									</Column>
+									<Column id="editVariable" width="10%" visible="{visible}">
+										<Text text="{i18n>document_Edit_field}" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Label class="mt" text="{slug}" />
+											<Text class="mt" text="{valueToStr} " />
+											<ObjectIdentifier title="Yes" text=""
+												visible="{flag}" />
+											<OverflowToolbarButton text="Edit"
+												press="handleEditField" icon="sap-icon://edit" 
+												 visible="{visible}" />
+
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+
+						</f:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter id="idSignature" text="{i18n>home_Signature}" icon="sap-icon://signature"
+						iconColor="Critical" key="signature" enabled="{/myself}">
+
+						<f:SimpleForm minWidth="1024" maxContainerCols="2"
+							layout="ResponsiveGridLayout">
+							<f:title>
+								<core:Title text="{i18n>home_Signature}" />
+							</f:title>
+
+							<Table id="idSignatureTable" inset="false"
+								items="{ path: '/docInfo/singatureGroup/0/signatures' }">
+
+								<columns>
+									<Column width="10%">
+										<Text text="{i18n>document_Order}" />
+									</Column>
+									<Column width="10%" demandPopin="true">
+										<Text text="{i18n>home_Signature}" />
+									</Column>
+
+									<Column width="40%" demandPopin="true">
+										<Text text="{i18n>global_Value}" />
+									</Column>
+									<Column width="10%">
+										<Text text="{i18n>document_Is_constants_value}" />
+									</Column>
+									<Column width="10%">
+										<Text text="{i18n>document_Was_edit}" />
+									</Column>
+									<Column width="10%">
+										<Text text="{i18n>document_Actions}" />
+									</Column>
+
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Label class="mt" text="{order}" />
+											<Label class="mt" text="{slug}" />
+											<Label class="mt" text="{fullName} ({valueToStr})"/>
+											<CheckBox text="" valueState="constants" enabled="false"
+												selected="{flag}" />
+											<ObjectIdentifier title="{i18n>global_Yes}" text=""
+												visible="{isSignDocument}" />
+											<OverflowToolbarButton text="Edit"
+												press="handleEditSign" icon="sap-icon://edit" />
+
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+
+						</f:SimpleForm>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>document_Generated_document}" icon="sap-icon://documents"
+						iconColor="Neutral" enabled="{/activated}" key="preview">
+						<Carousel id="previewCarousel" class="sapUiContentPadding" loop="false">
+							
+						</Carousel>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>global_Versions}" icon="sap-icon://search"
+						iconColor="Positive" enabled="{/activated}">
+
+						<Table id="idProductsTable2" inset="false" items="{ path: '/generated' }">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="{i18n>global_Versions}" level="H2" />
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="32em">
+									<Text text="{i18n>document_Generated_document}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>pending_Effective_Date}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>document_Template_version}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>global_Errors}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectIdentifier
+											title="{document/docId} - {document/targetUser_firstName} {document/targetUser_lastName}"
+											text="{i18n>document_Generated_id} : {generatedIdPpd}" />
+										<Text text="{generatedOn}" />
+										<Text text="{version}" />
+										<Button text="{numberErrors} error(s)"
+											state="{ path: 'state', formatter: 'generator.view.Table.Formatter.status' }"
+											icon="sap-icon://{state}" press="onInfoError" />
+									</cells>
+								</ColumnListItem>
+								<!-- <StandardListItem type="Navigation" press="onNavPressed2" title="{docId}" 
+									description="Revision : 2 - 04/06/2017 18:40:00" icon="sap-icon://doc-attachment" 
+									id="__item5" /> -->
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter text="{i18n>document_Process_signature}" icon="sap-icon://notes"
+						iconColor="Positive" enabled="{/activated}" key="signProcess">
+					
+						<Table id="idTableSignObservation" inset="false" items="{ path: '/', sorter:{ path: 'generatedOn', descending: true} }">
+							<headerToolbar>
+								<Toolbar>
+									<Title text="{i18n>document_Process_signature}" level="H2" />
+									<ToolbarSpacer/>
+									<Button
+										icon="sap-icon://synchronize"
+										tooltip="{i18n>global_Reload}"
+										press="onVersionPressed"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="30%" >
+									<Text text="{i18n>document_Generated_id}" />
+								</Column>
+								<Column width="20%" demandPopin="true">
+									<Text text="{i18n>global_Status} " />
+								</Column>
+								<Column width="30%" demandPopin="true">
+									<Text text="{i18n>global_Dates}" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="{i18n>global_Observations}" />
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<ObjectIdentifier
+											title="{idPpdSignCtrl}" />
+										<Text text="{status}" />
+										<ObjectIdentifier title="{i18n>document_Last_update}: {lastUpdateOnString}" text="{i18n>document_Date_create}: {generatedOn}" />	
+										<OverflowToolbarButton text="3" icon="sap-icon://message-popup" press="onObservationSign" />
+										
+									</cells>
+								</ColumnListItem>
+								<!-- <StandardListItem type="Navigation" press="onNavPressed2" title="{docId}" 
+									description="Revision : 2 - 04/06/2017 18:40:00" icon="sap-icon://doc-attachment" 
+									id="__item5" /> -->
+							</items>
+						</Table>
+					
+					</IconTabFilter>					
+				</items>
+			</IconTabBar>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer />
+				<Button text="{i18n>document_Generated_document}" sid="{/generator/rst/json/generated/{/generated/0/generatedIdPpd}/file}" type="Default" icon="sap-icon://write-new" press="onGeneratePressed" />
+				<Button text="{i18n>document_Download_latest_version}" press="onDownloadPressed" enabled="{/activated}" id="__button5" type="Default" icon="sap-icon://download" />
+				
+				<MenuButton enabled="{/activated}" icon="sap-icon://add" text="{i18n>global_Submit}" defaultAction="onDefaultAction" useDefaultActionOnly="true">
+					<menu>
+						<Menu>
+							<items>
+								<MenuItem text="{i18n>document_Archive}" type="Emphasized" enabled="true" visible="true" icon="sap-icon://pushpin-on" press="onPressArchive" />
+								<MenuItem text="{i18n>document_Send_peopledoc_esign}" enabled="{/activated}" visible="{/visible}" type="Emphasized" icon="sap-icon://accept" press="onSignaturePressed"  />
+								<MenuItem text="{i18n>document_Send_peopledoc_company_vault}" enabled="{/activated}" visible="{/visible2}" type="Emphasized" icon="sap-icon://accept" press="onCompanyPressed" />
+								<MenuItem text="{i18n>document_Send_peopledoc_employee_vault}" enabled="{/activated}" visible="{/visible2}" icon="sap-icon://accept" press="onValidatedPressed" />
+							</items>
+						</Menu>
+					</menu>
+				</MenuButton>
+				
+				<Button text="{i18n>global_Delete}" icon="sap-icon://write-new" type="Reject" press="onPressDelete" sId="{/document/id})" enabled="{/myself}"/>
+			</Toolbar>
+		</footer>
+	</Page>
+</core:View>

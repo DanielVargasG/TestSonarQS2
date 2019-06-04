@@ -1,0 +1,76 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:tnt="sap.tnt" xmlns="sap.m" xmlns:u="sap.ui.unified" controllerName="generator.controller.employee.Perso" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="HomeMasterPage" title="{b_i18n>EMPLOYEES_MASTER_PAGE_NAME}" scrollToLoad="false" showNavButton="true" navButtonTap="onNavPressed">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{i18n>global_Mydocument}" responsive="true" intro="{/personalInfoNav/results/0/firstName} {/personalInfoNav/results/0/lastName} ({/personIdExternal})" backgroundDesign="Translucent" icon="sap-icon://basket">
+				<attributes>
+					<ObjectAttribute id="actID" text="{i18n>home_Generate_document_myself}" active="true" press="onNavToSelfTemplate" />
+				</attributes>
+				
+				<headerContainer>
+					<IconTabBar  expandable="false" expanded="true"  responsive="true" class="sapUiSmallMarginBottom sapUiResponsiveContentPadding" select="handleIconTabBarSelect">
+						<items>	
+							<IconTabFilter icon="sap-icon://folder" iconColor="Positive" text="{i18n>global_Mydocument}" key="mydoc">
+
+								<Tree id="Tree" items="{path: '/documents', sorter: { path: 'id' } }" mode="None">
+									<CustomTreeItem visible="{visible}">
+										<FlexBox alignItems="Start" width="100%">
+											<items>
+
+												<ToggleButton enabled="false" icon="sap-icon://folder" press="onDownloadPress" visible="{finalDoc}">
+													<layoutData>
+														<FlexItemData growFactor="1" />
+													</layoutData>
+												</ToggleButton>
+												<ObjectIdentifier title="{label}" text="{id}" visible="{finalDoc}">
+													<layoutData>
+														<FlexItemData growFactor="20" />
+													</layoutData>
+												</ObjectIdentifier>
+												<NumericContent value="{countItems}" valueColor="Good" visible="{finalDoc}">
+													<layoutData>
+														<FlexItemData growFactor="1" />
+													</layoutData>
+												</NumericContent>
+
+												<ToggleButton icon="sap-icon://download" press="onDownloadPress" visible="{ntFinalDoc}" >
+													<layoutData justifyContent='End'>
+														<FlexItemData minWidth="55px" maxWidth="55px" growFactor="1" />
+													</layoutData>
+												</ToggleButton>
+
+												<ObjectIdentifier width="100%" title="{title}" text="{id}" visible="{ntFinalDoc}">
+													<layoutData>
+														<FlexItemData growFactor="20" />
+													</layoutData>
+												</ObjectIdentifier>
+
+
+											</items>
+										</FlexBox>
+									</CustomTreeItem>
+								</Tree>
+							</IconTabFilter>							
+							
+							
+
+						</items>
+					</IconTabBar>
+				</headerContainer>
+			</ObjectHeader>
+		</content>
+	</Page>
+</core:View>

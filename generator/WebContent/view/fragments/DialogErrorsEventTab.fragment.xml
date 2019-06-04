@@ -1,0 +1,16 @@
+<!DOCTYPE xml>
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover showHeader="false" contentWidth="700px" contentHeight="300px"
+		placement="VerticalPreferredBottom">
+		<NavContainer id="navCon3">
+			<Page id="master3" title="{i18n>global_Errors}">
+				<List id="list3" items="{modelEventlist>/observationsList}">
+					<StandardListItem title="{modelEventlist>code} {modelEventlist>message}"
+						description="{modelEventlist>message}" type="Active"
+						iconDensityAware="true" iconInset="true" iconColor="Critical" icon="sap-icon://error" />
+				</List>				
+			</Page>
+		</NavContainer>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,46 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.view.Menu.AdministrationData" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<TileContainer id="container" tileDelete="">
+				<!-- <StandardTile press="onPressEventMapping" icon="sap-icon://decrease-line-height" title="{i18n>administration_Mapping_configuration}" />
+				<StandardTile press="onPressEventConf" icon="sap-icon://action-settings" title="{i18n>adminevent_Event_list_configuration}" />
+				
+				
+				<StandardTile press="onPressAdmParameters" icon="sap-icon://developer-settings" title="{i18n>admindata_System_parameters}" />
+				<StandardTile press="onPressStructure" icon="sap-icon://org-chart" title="{i18n>admindata_Business_structure_configuration}" />
+					
+				<StandardTile press="onPressBDInit" icon="sap-icon://tools-opportunity" title="Dummy Data" /> 
+								
+				<StandardTile press="onPressEventCountry" icon="sap-icon://filter-fields" title="{i18n>admindata_Country}" />
+				<StandardTile press="onPressLanguage" icon="sap-icon://geographic-bubble-chart" title="{i18n>language}" />
+				
+				
+				<StandardTile press="onPressEventAdmControlPanel" icon="sap-icon://wrench" title="Control Panel" />
+				<StandardTile press="onPressEventAdmExpImpData" icon="sap-icon://sap-box" title="{i18n>admindata_Export_import_data}" />
+				<StandardTile press="onPressBDRefresh" icon="sap-icon://goalseek" title="{i18n>admindata_Refresh_database}" /> -->
+				
+				<StandardTile press="onPressEventLogger" icon="sap-icon://notes" title="{i18n>administration_Logger}" />
+				<StandardTile press="onPressEventAdmControlPanel" icon="sap-icon://wrench" title="{i18n>controlpanel_}" />
+				<StandardTile press="onPressEventAdmExpImpData" icon="sap-icon://sap-box" title="{i18n>admindata_Export_import_data}" />
+				<StandardTile press="onPressBDRefresh" icon="sap-icon://goalseek" title="{i18n>admindata_Refresh_database}" />
+				<StandardTile press="onPressAdmParameters" icon="sap-icon://developer-settings" title="{i18n>admindata_System_parameters}" />
+				<StandardTile press="onPressEventConf" icon="sap-icon://action-settings" title="{i18n>adminevent_Event_list_configuration}" />
+					
+			</TileContainer>
+		</content>
+		
+	</Page>
+</core:View>

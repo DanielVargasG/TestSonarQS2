@@ -1,0 +1,65 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.controller.administration.Lookup" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" vAlign="Center" inset="false" items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="Configuration Lookup" level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+
+					<Column width="20%">
+						<Text text="Code table" />
+					</Column>
+					<Column width="30%">
+						<Text text="Value in" />
+					</Column>
+					<Column width="30%">
+						<Text text="Value out" />
+					</Column>
+					<Column width="10%">
+					</Column>
+					<Column width="10%">
+					</Column>
+
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{codeTable}" text="" />
+							<ObjectIdentifier title="{valueIn}" text="" />
+							<ObjectIdentifier title="{valueOut}" text="" />
+							<OverflowToolbarButton text="Edit" press="handleCreateEditLookup" icon="sap-icon://edit" />
+							<OverflowToolbarButton text="Delete" press="handleDeleteLookup" icon="sap-icon://delete" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />
+				<OverflowToolbarButton text="Add" press="handleCreateEditLookup" icon="sap-icon://add" />
+			</OverflowToolbar>
+		</footer>
+
+	</Page>
+
+</core:View>

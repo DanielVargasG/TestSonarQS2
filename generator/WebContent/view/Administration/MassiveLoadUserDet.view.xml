@@ -1,0 +1,91 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.controller.administration.MassiveLoadUserDet"
+	xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>loadUser}"
+		class="sapUiContentPadding">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		
+		<content>
+
+			
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'statusLabel', group: true } }">
+				<headerToolbar>
+				
+					<Toolbar>
+						<Title text="{i18n>loadUser_employee}" level="H2"/>
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://synchronize"
+							tooltip="{i18n>global_Info}"
+							press="handleRefreshData"/>
+						
+					</Toolbar>
+				</headerToolbar>
+				<columns>		
+					<Column width="15%">
+						<Text text="{i18n>global_Status}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>event_Retries}" />
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>global_User}" />
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>event_Start_date}" />
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>loadUser_Dates}" />
+					</Column>				
+					<Column width="10%">
+						<Text text="{i18n>global_Observations}" />
+					</Column>	
+					<Column width="9%">
+						<Text text="{i18n>global_Document}" />
+					</Column>	
+					<Column width="9%">
+						<Text text="{i18n>global_Edit}" />
+					</Column>				
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>							
+							<ObjectIdentifier title="{statusLabel}" text="{i18n>global_Id}: {id}"/>
+							<Label class="mt" text="{retries}" />
+							<ObjectIdentifier title="" text="{i18n>event_User_id}: {userIdPpd} / {i18n>event_Seq}: {seqNumberPpd} / {i18n>global_country}: {userCountryString}" />							
+							<ObjectIdentifier title="{i18n>event_Start_date}: {startDatePpdOnString}" text="{i18n>event_Instantaneous_date}: {eventListenerParam/isDateinstant} / " />
+							<ObjectIdentifier title="{i18n>event_Last_update}: {lastUpdateOnString}" text="{i18n>event_CreateDate}: {createOnString}" />
+														
+							<OverflowToolbarButton text="{i18n>event_Observation}" press="onObservationPress" icon="sap-icon://notes" />
+							<OverflowToolbarButton text="{i18n>event_Attachment}" press="onUserPress" icon="sap-icon://documents" />
+							<OverflowToolbarButton text="{i18n>event_Change_status}" press="onChangeUser" icon="sap-icon://edit" visible="{isEdit}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="btnPrev" icon="sap-icon://arrow-left" press="onPagePrev"/>
+				<Button id="btnNext" icon="sap-icon://arrow-right" press="onPageNext"/>
+			</Toolbar>
+		</footer>
+	</Page>
+
+</core:View>

@@ -1,0 +1,84 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="generator.view.Administration.MappingRolePpd" xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>adminmapping_Role_mapping_peopledoc} " level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="20%">
+						<Text text="{i18n>mappingrole_Name}" />
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>mappingrole_Name_peopledoc}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>mappingrole_Count_user}" />
+					</Column>
+					<Column width="5%">
+						<Text text="{i18n>mappingrole_Role_type}" />
+					</Column>
+					<Column width="8%">
+						<Text text="{i18n>mappingrole_Role_operator}" />
+					</Column>
+					<Column width="10%">
+						<Text text="Organization" />
+					</Column>
+					<Column width="5%">
+						<Text text="{i18n>mappingrole_Id_sf}" />
+					</Column>
+					<Column width="5%">
+						<Text text="" />
+					</Column>
+					<Column width="5%">
+						<Text text="" />
+					</Column>
+					<Column width="5%">
+						<Text text="" />
+					</Column>
+					<Column width="5%">
+						<Text text="" />
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Label class="mt" text="{nameSf}" />
+							<Label class="mt" text="{namePpd}" />
+							<Label class="mt" text="{countUsers}" />
+							<Label class="mt" text="{roleType}" />
+							<Label class="mt" text="{roleOperator}" />
+							<Label class="mt" text="{roleOrga}" />
+							<Label class="mt" text="{idSf}" />
+							<OverflowToolbarButton text="{i18n>global_Edit}_group" visible="{roleUseSfGroups}" press="handleGroupMappingField" icon="sap-icon://target-group" />
+							<OverflowToolbarButton text="{i18n>global_Edit}_role" visible="{roleUseSfRoles}" press="handleRoleMappingField" icon="sap-icon://role" />
+							<OverflowToolbarButton text="{i18n>global_Edit}" press="handleEditMappingField" icon="sap-icon://edit" />
+							<OverflowToolbarButton text="{i18n>global_Delete}" press="handleDeleteMappingField" icon="sap-icon://delete" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />
+				<OverflowToolbarButton text="{i18n>global_Add}" press="handleAddMappingField" icon="sap-icon://add" />
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</core:View>

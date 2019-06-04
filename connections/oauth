@@ -1,0 +1,7 @@
+#Exported connectivity destination
+#Fri Sep 01 16:42:50 COT 2017
+Name=oauth
+URL=http\://localhost\:8080/oauth2.local/token/info
+ProxyType=Internet
+Type=HTTP
+Authentication=NoAuthentication

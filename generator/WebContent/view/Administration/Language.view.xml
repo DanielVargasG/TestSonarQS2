@@ -1,0 +1,77 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="generator.controller.administration.Language"
+	xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false"
+		title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true"
+			navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed"
+						icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" vAlign="Center" inset="false"
+				items="{ path: '/', sorter: { path: 'id' } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title
+							text="{i18n>language_Configuration}"
+							level="H2" />
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+
+					<Column width="25%">
+						<Text text="{i18n>language_Code} " />
+					</Column>
+					<Column width="30%">
+						<Text text="{i18n>language_Name}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>global_Active}" />
+					</Column>
+					<Column width="10%">
+					</Column>
+					<Column width="10%">
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{code}" text="" />
+							<ObjectIdentifier title="{description}" text="" />
+							<CheckBox valueState="Status" enabled="false"
+								selected="{status}" />
+							<OverflowToolbarButton
+								press="handleCreateEditLanguage" icon="sap-icon://edit" />
+							<OverflowToolbarButton
+								press="handleDeleteLanguage" icon="sap-icon://delete" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+
+		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer />
+				<OverflowToolbarButton
+					press="handleCreateEditLanguage" icon="sap-icon://add" />
+			</OverflowToolbar>
+		</footer>
+
+	</Page>
+
+</core:View>

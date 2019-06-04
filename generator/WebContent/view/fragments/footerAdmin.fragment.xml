@@ -1,0 +1,9 @@
+<!DOCTYPE xml>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<OverflowToolbar>
+		<ToolbarSpacer />
+		<Button press="onPressEventDataInit" icon="sap-icon://database" text="{i18n>administration_Data_init}" />
+		<Button press="onPressEventMapping" icon="sap-icon://employee-pane" text="{i18n>administration_Mapping_configuration}" />
+		<Button press="onPressAdmDocument" icon="sap-icon://documents" text="{i18n>administration_Document_mapping}" />
+	</OverflowToolbar>
+</core:FragmentDefinition>

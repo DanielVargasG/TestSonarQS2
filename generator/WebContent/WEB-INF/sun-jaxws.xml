@@ -1,0 +1,4 @@
+<!DOCTYPE xml>
+<endpoints xmlns='http://java.sun.com/xml/ns/jax-ws/ri/runtime' version='2.0'>
+	<endpoint name='NotifyImplService' implementation='edn.cloud.web.soap.NotifyImplService' url-pattern='/ppdocservice' />
+</endpoints>

@@ -1,0 +1,13 @@
+#Exported connectivity destination
+#The following fields with passwords were removed:
+#Password
+#Fri Sep 01 16:43:03 COT 2017
+Description=SuccessFactors Core OData API
+Type=HTTP
+TrustAll=true
+Authentication=BasicAuthentication
+Name=sap_hcmcloud_core_odata
+CloudConnectorVersion=1
+ProxyType=Internet
+URL=https\://api5.successfactors.eu/odata/v2
+User=superadminApp@C0018051040T1

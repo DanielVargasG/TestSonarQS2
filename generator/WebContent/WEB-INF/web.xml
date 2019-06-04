@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>generator</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error500.html</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/error500.html</location>
+	</error-page>
+	<listener>
+		<description>sessionListener</description>
+		<listener-class>edn.cloud.web.service.SessionListener</listener-class>
+	</listener>
+	<listener>
+		<description>contextListener</description>
+		<listener-class>edn.cloud.web.service.AppServletContextListener</listener-class>
+	</listener>
+	
+    <listener>
+        <listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+    </listener>	
+	
+	<filter>
+		<filter-name>EntityManagerInterseptor</filter-name>
+		<filter-class>edn.cloud.web.service.EntityManagerInterceptor</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EntityManagerInterseptor</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<display-name>ApplicationFilter</display-name>
+		<filter-name>ApplicationFilter</filter-name>
+		<filter-class>edn.cloud.web.service.ApplicationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ApplicationFilter</filter-name>
+		<url-pattern>/rst/*</url-pattern>
+	</filter-mapping>
+	<filter>
+		<display-name>SessionCreateFilter</display-name>
+		<filter-name>SessionCreateFilter</filter-name>
+		<filter-class>edn.cloud.web.service.SessionCreateFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>SessionCreateFilter</filter-name>
+		<url-pattern>/rst/*</url-pattern>
+	</filter-mapping>
+	
+	<context-param>
+		<param-name>com.sap.ui5.resource.USE_CACHE</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sap.ui5.resource.REMOTE_LOCATION</param-name>
+		<param-value>https://sapui5.hana.ondemand.com</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sap.ui5.resource.REMOTE_USE_CACHE</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>com.sap.ui5.resource.PREFER_REMOTE_LOCATION</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/rst</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+                </servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>edn.cloud.web.rest.ApplicationConfiguration</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/rst/*</url-pattern>
+	</servlet-mapping>
+	
+	<resource-ref>
+		<res-ref-name>jdbc/DefaultDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>connectivityConfiguration</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.configuration.ConnectivityConfiguration</res-type>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>authenticationHeaderProvider</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.authentication.AuthenticationHeaderProvider</res-type>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>ppd</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.http.HttpDestination</res-type>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>ppd2</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.http.HttpDestination</res-type>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>ppd3</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.http.HttpDestination</res-type>
+	</resource-ref>
+	<resource-ref>
+		<res-ref-name>sap_hcmcloud_core_odata</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.http.HttpDestination</res-type>
+	</resource-ref>
+	<login-config>
+		<auth-method>FORM</auth-method>
+	</login-config>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>Everyone</role-name>
+			<role-name>Administrator</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>		
+		<web-resource-collection>
+			<web-resource-name>Metadata</web-resource-name>
+			<url-pattern>/rst/json/$metadata</url-pattern>
+			<url-pattern>/rst/json/testmt</url-pattern>
+			<url-pattern>/rst/json/testmt2</url-pattern>
+			<url-pattern>/rst/json/ppdocsign/callback</url-pattern>
+			<url-pattern>/rst/json/admin/massivedownload</url-pattern>
+			<url-pattern>/rst/json/admin/eventsyncdownload</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Webservice</web-resource-name>
+			<url-pattern>/ppdocservice</url-pattern>
+		</web-resource-collection>
+	</security-constraint>
+		
+</web-app>

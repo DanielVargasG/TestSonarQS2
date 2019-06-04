@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.suite.ui.microchart"
+	xmlns:m="sap.m"
+	xmlns:layout="sap.ui.layout">
+	
+	<m:Popover showHeader="false" contentWidth="700px" contentHeight="300px"
+		placement="VerticalPreferredBottom">
+		<m:NavContainer id="navCon2">
+			<m:Page id="master2" title="{i18n>global_statistics}">
+			
+				<m:List id="list2" items="{detailStatisticsModel>/statisticsList}">
+					<m:StandardListItem title="{detailStatisticsModel>label}"
+						description="{detailStatisticsModel>value}" type="Active"
+						iconDensityAware="true" iconInset="true" iconColor="Critical" icon="sap-icon://error" />
+				</m:List>
+				
+			</m:Page>
+		</m:NavContainer>
+	</m:Popover>	
+
+</core:FragmentDefinition>

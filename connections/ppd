@@ -1,0 +1,14 @@
+#Exported connectivity destination
+#The following fields with passwords were removed:
+#Password
+#Fri Sep 01 16:42:57 COT 2017
+Type=HTTP
+X-API-KEY=Sk6eLsffS95wg4U2FK9Hv6b77SrG5Om7
+Authentication=BasicAuthentication
+client_id=abea0bf3-e1cc-4151-8777-cf2a599c58d6
+Name=ppd
+ProxyType=Internet
+URL=https\://apis.staging.eu.people-doc.com/api/v2/client/
+User=33a81514-fb7e-409f-a4ce-698f8f399f6c
+grant_type=client_credentials
+scope=client

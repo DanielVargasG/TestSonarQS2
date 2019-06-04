@@ -1,0 +1,95 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from NotifyImplService WSDL service -->
+
+  <service name="NotifyImplPort" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://notification.event.successfactors.com"/>
+      <parameter name="wsdlServiceElement" value="NotifyImplService"/>
+      <parameter name="schemaUnqualified" value="http://notification.event.successfactors.com"/>
+      <parameter name="wsdlServicePort" value="NotifyImplPort"/>
+      <parameter name="className" value="com.successfactors.event.notification.NotifyImplPortBindingSkeleton"/>
+      <parameter name="wsdlPortType" value="INotify"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <parameter name="allowedMethods" value="*"/>
+
+      <typeMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:eenAlertRequestMeta"
+        type="java:com.successfactors.event.notification.EenAlertRequestMeta"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:eenAlertRequestData"
+        type="java:com.successfactors.event.notification.EenAlertRequestData"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:>eenAlertRequestData>entityKeys"
+        type="java:com.successfactors.event.notification.Param[]"
+        innerType="cmp-ns:param" xmlns:cmp-ns="http://notification.event.successfactors.com"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:>eenAlertRequestData>params"
+        type="java:com.successfactors.event.notification.Param[]"
+        innerType="cmp-ns:param" xmlns:cmp-ns="http://notification.event.successfactors.com"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:ExternalEventResponse"
+        type="java:com.successfactors.event.notification.ExternalEventResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:events"
+        type="java:com.successfactors.event.notification.EenAlertRequestData[]"
+        innerType="cmp-ns:eenAlertRequestData" xmlns:cmp-ns="http://notification.event.successfactors.com"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:ExternalEvent"
+        type="java:com.successfactors.event.notification.ExternalEvent"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:param"
+        type="java:com.successfactors.event.notification.Param"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://notification.event.successfactors.com"
+        qname="ns:eenAlertResponsePayload"
+        type="java:com.successfactors.event.notification.EenAlertResponsePayload"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

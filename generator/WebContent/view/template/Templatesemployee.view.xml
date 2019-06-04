@@ -1,0 +1,45 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:tmpl="sap.ui.core.tmpl" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:table="sap.ui.table" controllerName="generator.controller.template.Templatesemployee"
+	xmlns:html="http://www.w3.org/1999/xhtml" setDisplayBlock="true">
+	<Page id="templateview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<core:Fragment fragmentName="generator.view.fragments.logo" type="XML" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<ObjectHeader title="{i18n>home_Generate_document_myself}" titleActive="false" backgroundDesign="Solid" icon="sap-icon://doc-attachment">
+			</ObjectHeader>
+			<Toolbar>
+				<SearchField liveChange="onSearchTemplate" width="100%" placeholder="{i18n>template_Search_name}"/>
+				<ToolbarSpacer />
+					
+				</Toolbar>
+			<Table id="idTableTemplate" width="100%" inset="false" items="{path: 'modelFolder>/', sorter: { path: 'id' } }" visible="true">
+				<columns>											
+					<Column width="90%" demandPopin="true"/>
+					<Column width="10%" demandPopin="true"/>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>													
+							<ObjectIdentifier title="{modelFolder>title}. / Id: {modelFolder>idTemplate} / Last Version: {modelFolder>latest_version} " text="{id}" visible="{= ${modelFolder>selfGeneration}.includes('1')}"/>
+							<Button icon="sap-icon://positive" press="handleColumnListItemSelect" class="sapUiSmallMarginEnd" visible="{= ${modelFolder>selfGeneration}.includes('1')}" />
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			
+		</content>
+		<footer>
+			
+		</footer>
+	</Page>
+</core:View>

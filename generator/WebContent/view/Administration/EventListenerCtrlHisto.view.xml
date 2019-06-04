@@ -1,0 +1,82 @@
+<!DOCTYPE xml>
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" controllerName="generator.view.Administration.EventListenerCtrlHisto" xmlns:html="http://www.w3.org/1999/xhtml"
+	setDisplayBlock="true">
+	<Page id="eventview" showNavButton="false" title="{i18n>DEFAULT_DETAILS_PAGE_NAME}">
+		<customHeader showNavButton="true" navButtonTap="onNavPressed">
+			<Bar design="Header">
+				<contentLeft>
+					<Button id="backButton" press="onNavPressed" icon="sap-icon://nav-back" />
+				</contentLeft>
+				<contentMiddle>
+					<Image src="./sap/fiori/ppldoc/logo.png" height="30px" />
+				</contentMiddle>
+				<contentRight>
+				</contentRight>
+			</Bar>
+		</customHeader>
+
+		<content>
+
+			<Table id="idPrincipalTable" inset="false" items="{ path: '/', sorter: { path: 'lastUpdateOnString', descending: true } }">
+				<headerToolbar>
+					<Toolbar>
+						<Title text="{i18n>event_Listener_history}" level="H2" />
+						<ToolbarSpacer/>
+						<Button
+							icon="sap-icon://add-filter"
+							tooltip="{i18n>logger_Show_filters}"
+							press="handleShowFilter"/>	
+						<Button
+							icon="sap-icon://delete"
+							tooltip="{i18n>event_Delete_all}"
+							press="onDeleteAll"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>					
+					<Column width="10%">
+						<Text text="{i18n>global_Id}" />
+					</Column>
+					<Column width="20%">
+						<Text text="{i18n>event_Title}" />
+					</Column>
+					<Column width="15%">
+						<Text text="{i18n>event_User_id}" />
+					</Column>	
+					<Column width="15%">
+						<Text text="{i18n>event_Start_date}" />
+					</Column>	
+					<Column width="15%">
+						<Text text="{i18n>event_Dates_event}" />
+					</Column>
+					<Column width="10%">
+						<Text text="{i18n>event_Observation}" />
+					</Column>	
+					<Column width="10%">
+						<Text text="{i18n>event_Attachment}" />
+					</Column>							
+					<Column width="10%">
+						<Text text="{i18n>event_process}" />
+					</Column>							
+										
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier title="{id}" />													
+							<ObjectIdentifier title="{i18n>global_Status}: {statusLabel}" text="{i18n>event_Id}: {idOriginalEvent}" />	
+												
+							<ObjectIdentifier title="" text="{i18n>event_User_id}: {userIdPpd} / {i18n>event_Seq}: {seqNumberPpd} / {i18n>global_country}: {userCountryString}" />							
+							<ObjectIdentifier title="{startDatePpdOnString}" />	
+							<ObjectIdentifier title="{i18n>event_Last_update}: {lastUpdateOnString}" text="{i18n>event_CreateDate}: {createOnString}" />														
+							<OverflowToolbarButton text="{i18n>event_Observation}" press="onObservationPress" icon="sap-icon://notes" />							
+							<OverflowToolbarButton text="{i18n>event_Attachment}" press="onAttachPress" icon="sap-icon://attachment-photo" />
+							<OverflowToolbarButton text="{i18n>event_Change_status}" press="onChangeStatus" icon="sap-icon://generate-shortcut" />	
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+	</Page>
+
+</core:View>
