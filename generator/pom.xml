@@ -13,7 +13,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<apache.cxf.version>3.2.2</apache.cxf.version>
 		<olingo.version>2.0.10</olingo.version>
-		<poi.version>3.17</poi.version>
+		<poi.version>5.2.1</poi.version>
 		<resteasy.version>3.5.0.Final</resteasy.version>
 	</properties>
 	<repositories>
